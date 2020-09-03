@@ -1,0 +1,19 @@
+.fullWidth{
+    width : 100%;
+    
+}
+table,td,tr{
+    width : 100%;
+    min-width: 400px;
+  max-width: 500px;
+  
+}
+body,form{
+    height : 100%
+}
+.controlWidth{
+    width : 70%;
+}
+mat-form-field{
+    width : 50%
+}
