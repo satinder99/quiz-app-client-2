@@ -7,10 +7,10 @@ import {RegisterComponent} from './register/register.component'
 const routes: Routes = [
   { path: '', component: HomeComponent ,
      children : [
-      // { path: '', redirectTo : '/register', pathMatch : "full" },
-    { path: 'register', component: RegisterComponent }
-  ] },
- 
+      { path: '', redirectTo : '/register', pathMatch : 'full' },
+      { path: 'register', component: RegisterComponent }
+    ]
+  },
 ];
 
 @NgModule({
