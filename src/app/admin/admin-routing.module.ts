@@ -3,7 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
 
-const routes: Routes = [{ path: '', component: AdminComponent }];
+const routes: Routes = [{ 
+  path: '', component: AdminComponent ,
+  children : [
+    { }                       // All other router come under children of Admin Component
+  ]}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

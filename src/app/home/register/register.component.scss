@@ -1,19 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container-fluid{
+    min-height: 100vh;
+    background-color : #20bf55;
+    background-image :linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+}
 .fullWidth{
     width : 100%;
+}
+.main-row{
+    margin-top: 25px;
+}
+.form-div{
+    background-color: white;
+    box-shadow: 0 0 15px darkgray;  
+    border-radius: 15px;
+    padding-bottom: 25px;
+}
+
+.social-login{
     
+    padding: 15px;
+    text-align: center;
+    button {
+        width: 200px;
+        padding : 6px;
+    }
+
+    .social-login-div{
+        margin-top: 15px;
+    }
 }
-table,td,tr{
-    width : 100%;
-    min-width: 400px;
-  max-width: 500px;
-  
+.btn-facebook{
+    color: white;
+    background-color: rgba(50, 87, 150, 1);
 }
-body,form{
-    height : 100%
+
+.register-heading{
+    margin : 20px;
+    text-align: center;
+    color: rgba(19, 150, 186, 1)
 }
-.controlWidth{
-    width : 70%;
+.form{
+    margin-top: 15px;
 }
-mat-form-field{
-    width : 50%
+
+.btn-signup{
+    padding: 12px 30px;
+    font-size: 0.75rem;
+    background-color: #3bb78f; 
+    background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+    min-width: 150px;
+}
+.brand-icon{
+    margin-right: 15px;
+}
+.input-div{
+    padding: 0 15px;
 }

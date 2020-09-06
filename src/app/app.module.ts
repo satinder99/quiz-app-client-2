@@ -3,12 +3,38 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
-//import { RegisterComponent } from './home/register/register.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HomeModule } from './home/home.module';
-import { RegisterComponent } from './home/register/register.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { 
+  SocialLoginModule, 
+  AuthServiceConfig,
+ 
+} from 'angularx-social-login';
+
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
+
+
+const CONFIG = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(
+      '538918892428-7svk4va0k9fprbmpi772a3bbb7g9a62c.apps.googleusercontent.com')
+  },
+  {
+    id : FacebookLoginProvider.PROVIDER_ID,
+    provider : new FacebookLoginProvider(
+      '643526379637107'
+    )
+  }
+]);
+
+export function provideConfig() {
+  return CONFIG;
+}
 
 @NgModule({
   declarations: [
@@ -17,18 +43,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HomeModule,
-    RouterModule.forRoot([
-      {
-        path : 'register',
-        component : RegisterComponent,
-      }
-    ]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
