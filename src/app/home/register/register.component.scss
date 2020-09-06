@@ -22,12 +22,16 @@
 }
 
 .social-login{
-    margin-top: 15px;
+    
     padding: 15px;
     text-align: center;
     button {
         width: 200px;
         padding : 6px;
+    }
+
+    .social-login-div{
+        margin-top: 15px;
     }
 }
 .btn-facebook{

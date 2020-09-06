@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { RegisterComponent } from './register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //Angualr Material
 import * as Material from '@angular/material';
@@ -26,6 +26,7 @@ import { FooterComponent } from './pages/footer/footer.component';
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     FontAwesomeModule ,
     Material.MatToolbarModule,
     Material.MatGridListModule,

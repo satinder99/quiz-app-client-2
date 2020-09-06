@@ -7,6 +7,7 @@ import {RegisterComponent} from './register/register.component'
 const routes: Routes = [
   { path: '', component: HomeComponent ,
      children : [
+      // { path: '', redirectTo : '/register', pathMatch : "full" },
     { path: 'register', component: RegisterComponent }
   ] },
  
