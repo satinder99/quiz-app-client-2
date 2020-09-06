@@ -9,12 +9,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 //Angualr Material
 import * as Material from '@angular/material';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+//components
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
+
 @NgModule({
-  declarations: [HomeComponent, RegisterComponent],
+  declarations: [
+    HomeComponent, 
+    RegisterComponent,
+    HeaderComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
+    FontAwesomeModule ,
     Material.MatToolbarModule,
     Material.MatGridListModule,
     Material.MatInputModule,
@@ -22,18 +34,10 @@ import * as Material from '@angular/material';
     Material.MatDatepickerModule,
     Material.MatNativeDateModule,
     Material.MatIconModule,
-    Material.MatCheckboxModule
+    Material.MatCheckboxModule,
+    Material.MatSelectModule
   ],
-  exports : [
-    RegisterComponent,
-    Material.MatToolbarModule,
-    Material.MatGridListModule,
-    Material.MatInputModule,
-    Material.MatFormFieldModule,
-    Material.MatDatepickerModule,
-    Material.MatNativeDateModule,
-    Material.MatIconModule,
-    Material.MatCheckboxModule
-  ]
+  exports : [],
+  bootstrap: [HomeComponent]
 })
 export class HomeModule { }

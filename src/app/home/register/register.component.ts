@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
+import {faCoffee} from '@fortawesome/free-solid-svg-icons';
+import {
+  faFacebookSquare,
+  faGooglePlusG,
+} from "@fortawesome/free-brands-svg-icons";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,6 +13,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   siteKey : string;
+  faCoffee = faCoffee;
+  google = faGooglePlusG;
+  facebook = faFacebookSquare
 
   constructor(private fb : FormBuilder) {
     this.siteKey = '6LdWDMYZAAAAAD-E6pikrnyWpQ_2tFdZvBuKJavJ';
