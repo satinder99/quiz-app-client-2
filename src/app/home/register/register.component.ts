@@ -43,9 +43,9 @@ export class RegisterComponent implements OnInit {
     dob : ['',[Validators.required]],
     email : ['',[Validators.email,Validators.required]],
     password : ['',[Validators.required,Validators.minLength(10)]],
-    // cPassword : [''],
     profilePic : [''],
     otherToken : [''],
+    provider : ['local'],
     termsAndConditions : ['true',[Validators.requiredTrue]],
   });
 
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
       Swal.fire({text : "Password not match"});
       return;
     }
-    console.log("all valid fields")
+    console.log("final details ", this.registerForm.value)
   }
 
   signUpwithGoogle(){
@@ -81,6 +81,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('email').patchValue(user.email)
     this.registerForm.get('profilePic').patchValue(user.photoUrl)
     this.registerForm.get('password').patchValue(user.id)
+    this.registerForm.get('otherToken').patchValue(user.idToken)
+    this.registerForm.get('provider').patchValue(user.provider)
     this.cPassword = user.id;
   }
 }
