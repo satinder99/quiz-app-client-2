@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {HttpClientModule} from '@angular/common/http'
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import {HomeService} from '../services/home.service'
 //Angualr Material
 import * as Material from '@angular/material';
 
@@ -29,7 +30,8 @@ import { LoginComponent } from './login/login.component';
     HomeRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    FontAwesomeModule ,
+    FontAwesomeModule,
+    HttpClientModule,
     Material.MatToolbarModule,
     Material.MatGridListModule,
     Material.MatInputModule,
@@ -39,6 +41,9 @@ import { LoginComponent } from './login/login.component';
     Material.MatIconModule,
     Material.MatCheckboxModule,
     Material.MatSelectModule
+  ],
+  providers : [
+    HomeService
   ],
   exports : [],
   bootstrap: [HomeComponent]

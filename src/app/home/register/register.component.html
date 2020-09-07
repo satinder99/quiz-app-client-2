@@ -68,10 +68,10 @@
           <div class="col-md-6 input-div">
             <mat-form-field appearance="outline" class="fullWidth">
               <mat-label>Select Gender</mat-label>
-              <mat-select [(value)]="selected">
-                <mat-option value="option1">Male</mat-option>
-                <mat-option value="option2">Female</mat-option>
-                <mat-option value="option3">Others</mat-option>
+              <mat-select formControlName="gender">
+                <mat-option value="male">Male</mat-option>
+                <mat-option value="female">Female</mat-option>
+                <mat-option value="others">Others</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -103,7 +103,7 @@
                 </section>
               </div>
               <div style="text-align: center;">
-                <button type="submit" class="btn btn-success btn-signup">Sign Up</button>
+                <button type="submit" [disabled]="!registerForm.valid" class="btn btn-success btn-signup">Sign Up</button>
               </div>
             </div>    
           </div>
