@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 import {faFacebookSquare,faGooglePlusG,} from "@fortawesome/free-brands-svg-icons";
 import Swal from 'sweetalert2'
+import {HomeService} from '../../services/home.service'
 
 import { AuthService } from "angularx-social-login";
 import {
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb : FormBuilder,
-    private authService : AuthService
+    private authService : AuthService,
+    private homeService : HomeService
     ) {
     this.siteKey = '6LdWDMYZAAAAAD-E6pikrnyWpQ_2tFdZvBuKJavJ';
    }
@@ -35,7 +37,7 @@ export class RegisterComponent implements OnInit {
   maxDate = new Date(2010, 0, 1);
   type : string = "local"
   cPassword : string;
-
+  hide : boolean = false;
   registerForm = this.fb.group({
     firstName : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
     lastName : [''],
@@ -46,7 +48,8 @@ export class RegisterComponent implements OnInit {
     profilePic : [''],
     otherToken : [''],
     provider : ['local'],
-    termsAndConditions : ['true',[Validators.requiredTrue]],
+    gender : ['', Validators.required],
+    termsAndConditions : ['',[Validators.requiredTrue]],
   });
 
   onSubmit(){
@@ -55,6 +58,16 @@ export class RegisterComponent implements OnInit {
       return;
     }
     console.log("final details ", this.registerForm.value)
+    this.homeService.signup(this.registerForm.value).subscribe((result)=>{
+      console.log("signup response")
+      if(result.success){
+        Swal.fire({text : "Signup successfully"})
+      } else {
+        Swal.fire({text : "Something went wrong"})
+      }
+    }),(err=>{
+      Swal.fire({text : "Something went wrong"})
+    })
   }
 
   signUpwithGoogle(){
