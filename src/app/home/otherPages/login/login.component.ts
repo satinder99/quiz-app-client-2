@@ -3,7 +3,7 @@ import {faFacebookSquare,faGooglePlusG,} from "@fortawesome/free-brands-svg-icon
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
-import {HomeService} from '../../services/home.service'
+import {HomeService} from '../../../services/home.service'
 import Swal from 'sweetalert2';
 
 @Component({

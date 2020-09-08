@@ -4,17 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import {RegisterComponent} from './otherPages/register/register.component';
 import {LandingPageComponent} from './otherPages/langing-page/langing-page.component'
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './otherPages/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent ,
-      children : [
-        {path : 'main', component : LandingPageComponent},
-        { path: 'register', component: RegisterComponent },
-        { path: 'login', component : LoginComponent},
-        {path : '**', redirectTo : '' }
+  { path: '', component: HomeComponent,
+    children : [
+      {path : 'home', component : LandingPageComponent},
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component : LoginComponent},
+      {path : '', redirectTo : '/home'},
     ]
-  },
+  }
 ]
 
 @NgModule({

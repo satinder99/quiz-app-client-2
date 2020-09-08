@@ -20,6 +20,6 @@ export class LandingPageComponent implements OnInit {
   }
 
   gotoRegister(){
-    this.router.navigateByUrl('/home/register')
+    this.router.navigateByUrl('/register')
   }
 }
