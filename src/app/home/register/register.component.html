@@ -53,7 +53,7 @@
               <mat-label>Mobile No. </mat-label>
               <input matInput type="tel" formControlName="mobileNo" pattern='^[6-9]\d{9}$'>
               <mat-error *ngIf = "registerForm.get('mobileNo').hasError('required')">Mobile Number is Required !!!</mat-error>
-              <mat-error *ngIf = "registerForm.get('mobileNo').hasError('minlength')||registerForm.get('mobileNo').hasError('maxlength')||registerForm.get('mobileNo').hasError">Mobile Number not valid.</mat-error>
+              <mat-error *ngIf = "!registerForm.get('mobileNo').hasError('required') && (registerForm.get('mobileNo').hasError('minlength')||registerForm.get('mobileNo').hasError('maxlength')||registerForm.get('mobileNo').hasError)">Mobile Number not valid.</mat-error>
             </mat-form-field>
           </div>
           <div class="col-md-6 input-div">
@@ -78,10 +78,10 @@
           <div class="col-md-6 input-div" *ngIf="type =='local'">
             <mat-form-field class="fullWidth" appearance="outline">
               <mat-label>Password</mat-label>
-              <input matInput type="password" [type]="hide ? 'text' : 'password'" formControlName="password">
+              <input matInput type="password" [type]="hide ? 'text' : 'password'" formControlName="password" pattern="^(?=.*[A-Z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&.])[A-Za-z\d@.$!%*#?&]{8,20}$">
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
               <mat-error *ngIf = "registerForm.get('password').hasError('required')">Password is Required !!!</mat-error>
-              <mat-error *ngIf = "registerForm.get('password').hasError">Password not valid.</mat-error>
+              <mat-error *ngIf = "!registerForm.get('password').hasError('required') && registerForm.get('password').hasError && !registerForm.get('password').hasError('minlength')">Password not valid.</mat-error>
               <mat-error *ngIf = "registerForm.get('password').hasError('minlength')">Passsword must contain atleast 10 characters.</mat-error>
             </mat-form-field>
           </div>

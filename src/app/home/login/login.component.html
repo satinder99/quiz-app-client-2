@@ -3,7 +3,7 @@
         <div class='row align-items-center mainrow'>
             
             <div class='col-md-4 form-div align-self-center' style='border:0px solid black'>
-                <div>Log in to your Account</div>
+                <div class='login-heading'>Log in to your Account</div>
                 <hr>
 
                 <div class="row social-login">
@@ -26,7 +26,7 @@
                     <div class='col-md-3'>
                         <label><h6>Email : </h6></label>
                         
-                        <input type='email'>
+                        <input type='email' formControlName='email'>
                     </div>
                 </div>
                 <br>
@@ -36,19 +36,19 @@
                     <div class='col-md-3' >
                         <label><h6>Password : </h6></label>
                         
-                        <input type='email'>
+                        <input type='email' formControlName='password'>
                     </div>
                 </div>
                 <br>
                 <div class='row'>
                 <div class='col-md-3'></div>
                 <div class='col-md-5'>
-                    <button type="button" class="btn btn-outline-dark btn-block">Log In</button>
+                    <button type="submit" class="btn btn-outline-dark btn-block">Log In</button>
                 </div>
                 </div>  
                 <br>
                 <div class='row signup justify-content-around'>
-                    <div class='col-md-5'><label>Need an account ---> <a routerLink='../regiter'>Sign up</a></label></div>
+                    <div class='col-md-5'><label>Need an account ---> <a [routerLink]="['/home/regiter']">Sign up</a></label></div>
                     <div class='col-md-5'>Forgot password
                     </div>
                 </div>
