@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 import {faFacebookSquare,faGooglePlusG,} from "@fortawesome/free-brands-svg-icons";
 import Swal from 'sweetalert2'
-import {HomeService} from '../../services/home.service'
+import {HomeService} from '../../../services/home.service'
 
 import { AuthService } from "angularx-social-login";
 import {

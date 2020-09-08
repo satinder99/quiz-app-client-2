@@ -1,0 +1,49 @@
+
+.container{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.2e,;
+}
+
+.band-name {
+    text-align: center;
+    margin: 0;
+    font-size: 4em;
+    font-family: "Booter - zero zero";
+    font-weight: normal;
+    color: white;
+}
+
+.main-footer{
+    background-color:#56ccf2;
+    color: white;
+    padding: 0 0.5em;
+}
+.main-footer-container{
+    display: flex;
+    align-items: center;
+}
+
+.main-footer-container ul {
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.main-footer li{
+    display: inline;
+    /* padding: 0 8px; */
+}
+
+.main-footer li i {
+    color: white;
+    font-size: 2em;
+    padding: 0 8px;
+}
+
+.nav a {
+    cursor: pointer;
+    display: inline-block;
+    padding: .5em;
+    color: white;
+    text-decoration: none;
+}

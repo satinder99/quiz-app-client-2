@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import {RegisterComponent} from './register/register.component'
+import {RegisterComponent} from './otherPages/register/register.component';
+import {LandingPageComponent} from './otherPages/langing-page/langing-page.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent ,
-     children : [
-      { path: '', redirectTo : '/register', pathMatch : 'full' },
-      { path: 'register', component: RegisterComponent }
+      children : [
+        {path : 'main', component : LandingPageComponent},
+        { path: 'register', component: RegisterComponent },
+        {path : '**', redirectTo : '' }
     ]
   },
 ];

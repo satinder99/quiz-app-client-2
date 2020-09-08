@@ -348,3 +348,58 @@ Before we get started, keep in mind:
     at processTicksAndRejections (internal/process/task_queues.js:97:5)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2020-09-08T13:31:46.865Z] ----------------------------------------------------------------------
+[debug] [2020-09-08T13:31:46.866Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\akash\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-09-08T13:31:46.867Z] CLI Version:   8.10.0
+[debug] [2020-09-08T13:31:46.867Z] Platform:      win32
+[debug] [2020-09-08T13:31:46.867Z] Node Version:  v12.18.3
+[debug] [2020-09-08T13:31:46.868Z] Time:          Tue Sep 08 2020 19:01:46 GMT+0530 (India Standard Time)
+[debug] [2020-09-08T13:31:46.868Z] ----------------------------------------------------------------------
+[debug] [2020-09-08T13:31:46.868Z] 
+[debug] [2020-09-08T13:31:46.873Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-08T13:31:46.873Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\work\quiz-app\quiz-client
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using quizapp3434. 
+[debug] [2020-09-08T13:31:51.361Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/quizapp3434  
+ 
+[debug] [2020-09-08T13:31:52.125Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 08 Sep 2020 13:31:52 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2020-09-08T13:31:56.392Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ 
+[debug] [2020-09-08T13:31:56.644Z] <<< HTTP RESPONSE 200 {"accept-ranges":"bytes","vary":"Accept-Encoding, Origin","content-type":"application/json","content-length":"1429","date":"Tue, 08 Sep 2020 13:11:49 GMT","expires":"Tue, 08 Sep 2020 14:01:49 GMT","last-modified":"Thu, 27 Aug 2020 23:52:22 GMT","x-content-type-options":"nosniff","server":"sffe","x-xss-protection":"0","cache-control":"public, max-age=3000","age":"1207","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""}
+[debug] [2020-09-08T13:31:56.973Z] Error: EISDIR: illegal operation on a directory, open 'C:\work\quiz-app\quiz-client\dist\index.html'
+    at Object.openSync (fs.js:462:3)
+    at Object.writeFileSync (fs.js:1362:35)
+    at Config.writeProjectFile (C:\Users\akash\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:155:8)
+    at C:\Users\akash\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:173:18
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
