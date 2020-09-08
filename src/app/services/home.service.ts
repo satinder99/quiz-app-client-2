@@ -20,6 +20,11 @@ export class HomeService {
         .pipe(retry(2), catchError(this.handleError))
   }
 
+  login(data : any) :Observable<any>{
+    return this.http.post(this.url+'/api/home/login',data)
+        .pipe(retry(2),catchError(this.handleError))
+  }
+
   private handleError(error: HttpErrorResponse) { 
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

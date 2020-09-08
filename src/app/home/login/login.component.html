@@ -1,0 +1,59 @@
+<div class='container-fluid'>
+    <div class='login-div'>
+        <div class='row align-items-center mainrow'>
+            
+            <div class='col-md-4 form-div align-self-center' style='border:0px solid black'>
+                <div class='login-heading'>Log in to your Account</div>
+                <hr>
+
+                <div class="row social-login">
+                    <div class="social-login-div google col-md-6">
+                      <button class="btn btn-danger" (click)="logInWithGoogle()"> 
+                        <span class="brand-icon"><fa-icon [icon]="google"></fa-icon></span>Log in via Google
+                      </button>
+                    </div>
+                    <div class="social-login-div facebook col-md-6">
+                      <button class="btn btn-facebook" (click)="logInWithFacebook()">
+                        <span class="brand-icon"><fa-icon [icon]="facebook"></fa-icon></span>Log in via Facebook
+                      </button>
+                    </div>
+                </div>
+
+                <form class='form' [formGroup]=loginForm (ngSubmit)='onSubmit()'>
+
+                <div class='row'>
+                    <div class='col-md-3'></div>
+                    <div class='col-md-3'>
+                        <label><h6>Email : </h6></label>
+                        
+                        <input type='email' formControlName='email'>
+                    </div>
+                </div>
+                <br>
+                
+                <div class='row'>
+                    <div class='col-md-3'></div>
+                    <div class='col-md-3' >
+                        <label><h6>Password : </h6></label>
+                        
+                        <input type='email' formControlName='password'>
+                    </div>
+                </div>
+                <br>
+                <div class='row'>
+                <div class='col-md-3'></div>
+                <div class='col-md-5'>
+                    <button type="submit" class="btn btn-outline-dark btn-block">Log In</button>
+                </div>
+                </div>  
+                <br>
+                <div class='row signup justify-content-around'>
+                    <div class='col-md-5'><label>Need an account ---> <a [routerLink]="['/home/regiter']">Sign up</a></label></div>
+                    <div class='col-md-5'>Forgot password
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

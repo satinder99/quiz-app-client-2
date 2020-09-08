@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
         Swal.fire({text : "Something went wrong"})
       }
     }),(err=>{
-      Swal.fire({text : "Something went wrong"})
+      Swal.fire({text : "Some error occured"})
     })
   }
 

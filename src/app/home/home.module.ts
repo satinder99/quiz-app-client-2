@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { LandingPageComponent } from './otherPages/langing-page/langing-page.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LandingPageComponent } from './otherPages/langing-page/langing-page.com
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
     LandingPageComponent
   ],
   imports: [

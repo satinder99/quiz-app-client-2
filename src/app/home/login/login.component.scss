@@ -1,0 +1,50 @@
+.social-login{
+    
+    padding: 15px;
+    text-align: center;
+    button {
+        width: 200px;
+        padding : 6px;
+    }
+
+    .social-login-div{
+        margin-top: 15px;
+    }
+}
+.btn-facebook{
+    color: white;
+    background-color: rgba(50, 87, 150, 1);
+}
+.brand-icon{
+    margin-right: 15px;
+}
+.container-fluid{
+    min-height: 100vh;
+    background-color : #20bf55;
+    background-image :linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+}
+.form-div{
+    background-color: white;
+    box-shadow: 0 0 15px darkgray;  
+    border-radius: 15px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    
+}
+.signup{
+    background-color: rgb(119, 115, 115);
+    border-radius: 0px 0px 15px 15px;
+    color : white;
+    a{
+        color : white;
+    }
+    text-align: center;
+    padding-bottom: 10px;
+}
+.mainrow{
+
+    justify-self: center;
+    justify-content: center;
+}
