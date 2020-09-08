@@ -15,13 +15,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //components
 import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     HomeComponent, 
     RegisterComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
