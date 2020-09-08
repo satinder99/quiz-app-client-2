@@ -62,6 +62,9 @@ export class RegisterComponent implements OnInit {
       console.log("signup response")
       if(result.success){
         Swal.fire({text : "Signup successfully"})
+        this.registerForm.reset();
+        this.cPassword = null;
+        this.type = 'local'
       } else {
         Swal.fire({text : "Something went wrong"})
       }
