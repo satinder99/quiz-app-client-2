@@ -42,7 +42,8 @@ import { LoginComponent } from './otherPages/login/login.component';
     Material.MatNativeDateModule,
     Material.MatIconModule,
     Material.MatCheckboxModule,
-    Material.MatSelectModule
+    Material.MatSelectModule,
+    Material.MatButtonModule
   ],
   providers : [
     HomeService
