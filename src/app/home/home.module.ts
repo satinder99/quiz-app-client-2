@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {HttpClientModule} from '@angular/common/http'
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './otherPages/register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import {HomeService} from '../services/home.service'
@@ -15,7 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //components
 import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
-import { LoginComponent } from './login/login.component';
+import { LandingPageComponent } from './otherPages/langing-page/langing-page.component';
+import { LoginComponent } from './otherPages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './login/login.component';
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    LandingPageComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,9 @@ import { LoginComponent } from './login/login.component';
   providers : [
     HomeService
   ],
-  exports : [],
+  entryComponents : [
+    HomeComponent
+  ],
   bootstrap: [HomeComponent]
 })
 export class HomeModule { }

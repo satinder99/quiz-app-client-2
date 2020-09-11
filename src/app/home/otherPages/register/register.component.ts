@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 import {faFacebookSquare,faGooglePlusG,} from "@fortawesome/free-brands-svg-icons";
 import Swal from 'sweetalert2'
-import {HomeService} from '../../services/home.service'
+import {HomeService} from '../../../services/home.service'
 
 import { AuthService } from "angularx-social-login";
 import {
@@ -62,6 +62,9 @@ export class RegisterComponent implements OnInit {
       console.log("signup response")
       if(result.success){
         Swal.fire({text : "Signup successfully"})
+        this.registerForm.reset();
+        this.cPassword = null;
+        this.type = 'local'
       } else {
         Swal.fire({text : "Something went wrong"})
       }
