@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { RegisterComponent } from './otherPages/register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FlipModule } from 'ngx-flip';
 
 import {HomeService} from '../services/home.service'
 //Angualr Material
@@ -34,6 +35,7 @@ import { LoginComponent } from './otherPages/login/login.component';
     FormsModule,
     FontAwesomeModule,
     HttpClientModule,
+    FlipModule, 
     Material.MatToolbarModule,
     Material.MatGridListModule,
     Material.MatInputModule,

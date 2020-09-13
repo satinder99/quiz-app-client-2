@@ -57,16 +57,21 @@ export class RegisterComponent implements OnInit {
       Swal.fire({text : "Password not match"});
       return;
     }
-    console.log("final details ", this.registerForm.value)
+
     this.homeService.signup(this.registerForm.value).subscribe((result)=>{
-      console.log("signup response")
+
       if(result.success){
-        Swal.fire({text : "Signup successfully"})
+        Swal.fire(
+          'Signup successfully!',
+          result.message,
+          'success'
+        )
+      
         this.registerForm.reset();
         this.cPassword = null;
         this.type = 'local'
       } else {
-        Swal.fire({text : "Something went wrong"})
+      Swal.fire({text : "Something went wrong"})
       }
     }),(err=>{
       Swal.fire({text : "Some error occured"})
@@ -74,7 +79,6 @@ export class RegisterComponent implements OnInit {
   }
 
   signUpwithGoogle(){
-    console.log("google login")
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user=>{
       this.fetchUserDetails(user)
     }).catch(err=>{
@@ -101,4 +105,4 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('provider').patchValue(user.provider)
     this.cPassword = user.id;
   }
-}
+} 

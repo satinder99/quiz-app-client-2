@@ -7,12 +7,12 @@ import {LandingPageComponent} from './otherPages/langing-page/langing-page.compo
 import { LoginComponent } from './otherPages/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent,
+  { path: '', component: HomeComponent, pathMatch : 'prefix',
     children : [
-      {path : 'home', component : LandingPageComponent},
+      {path : '', component : LandingPageComponent},
       { path: 'register', component: RegisterComponent },
       { path: 'login', component : LoginComponent},
-      {path : '', redirectTo : '/home'},
+      {path : '**', redirectTo : '/home', pathMatch : 'prefix'},
     ]
   }
 ]

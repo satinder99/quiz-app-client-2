@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
-  { path: '', component: UserComponent ,
+  { path: '', component: UserComponent, pathMatch : 'prefix',
     children : [
-      { }                       // All other router come under children of usercomponent
+                          // All other router come under children of usercomponent
     ]
 }
 ];
