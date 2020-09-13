@@ -41,10 +41,22 @@
         color : white;
     }
     text-align: center;
-    padding-bottom: 10px;
+    padding: 10px 0px;
+    .btn-signup:hover{
+        background-color: rgb(177, 181, 182);
+    }
 }
 .mainrow{
 
     justify-self: center;
     justify-content: center;
+}
+.fullWidth{
+    width : 100%;
+}
+.login-heading{
+    margin : 20px 0px;
+    text-align: center;
+    color: rgba(19, 150, 186, 1);
+
 }
