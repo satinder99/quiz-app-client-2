@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {HomeService} from './services/home.service'
 import { 
   SocialLoginModule, 
   AuthServiceConfig,
@@ -50,7 +50,8 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    HomeService
   ],
   bootstrap: [AppComponent]
 })

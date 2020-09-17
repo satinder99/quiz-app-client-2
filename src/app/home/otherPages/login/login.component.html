@@ -1,63 +1,89 @@
 <div class='container-fluid'>
     <div class='login-div'>
-        <div class='row align-items-center mainrow'>
-            
-            <div class='col-md-4 form-div align-self-center' style='border:0px solid black'>
-                <div class='login-heading'><h2>Log in to your Account</h2></div>
-                <hr>
+        <div class='row '>
 
-                <div class="row social-login">
-                    <div class="social-login-div google col-md-6">
-                      <button class="btn btn-danger" (click)="logInWithGoogle()"> 
-                        <span class="brand-icon"><fa-icon [icon]="google"></fa-icon></span>Log in via Google
-                      </button>
-                    </div>
-                    <div class="social-login-div facebook col-md-6">
-                      <button class="btn btn-facebook" (click)="logInWithFacebook()">
-                        <span class="brand-icon"><fa-icon [icon]="facebook"></fa-icon></span>Log in via Facebook
-                      </button>
-                    </div>
-                </div>
-
-                <form class='form' [formGroup]=loginForm (ngSubmit)='onSubmit()'>
-
-                <div class='row'>
-                    <div class='col-md-2'></div>
-                    <div class='col-md-8'>
-                        <mat-form-field appearance='outline' class='fullWidth'>
-                            <mat-label><h6>Email : </h6></mat-label>
-                        
-                            <input matInput type='email' formControlName='email'>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <br>
+            <ngx-flip [flip]="flipDiv" style="width: 100%;" class="">
+                <div front>
+                    <div class='col-md-5 form-div ' style='border:0px solid black'>
                 
-                <div class='row'>
-                    <div class='col-md-2'></div>
-                    <div class='col-md-8'>
-                        <mat-form-field appearance = 'outline' class='fullWidth'>
-                            <mat-label><h6>Password : </h6></mat-label>
+                
+                        <div class='login-heading'><h2>Log in to your Account</h2></div>
+                        
+                        <hr style="margin : 0">
+        
+                        <div class="row social-login" style="padding-top: 0;">
+                            <div class="social-login-div google col-12">
+                              <button class="btn btn-danger" (click)="logInWithGoogle()"> 
+                                <span class="brand-icon"><fa-icon [icon]="google"></fa-icon></span>Log in via Google
+                              </button>
+                            </div>
+                            <div class="social-login-div facebook col-12">
+                              <button class="btn btn-facebook" (click)="logInWithFacebook()">
+                                <span class="brand-icon"><fa-icon [icon]="facebook"></fa-icon></span>Log in via Facebook
+                              </button>
+                            </div>
+                        </div>
+                        
+                        <form class='form' [formGroup]=loginForm (ngSubmit)='onSubmit()'>
+        
+                            <div class='row'>
+                                <div class='col-md-2'></div>
+                                <div class='col-md-8'>
+                                    <mat-form-field appearance='outline' class='fullWidth'>
+                                        <mat-label>Email : </mat-label>
+                                    
+                                        <input matInput type='email' formControlName='email'>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-md-2'></div>
+                                <div class='col-md-8'>
+                                    <mat-form-field appearance = 'outline' class='fullWidth'>
+                                        <mat-label>Password :</mat-label>
+                                        
+                                        <input matInput type='password' formControlName='password'>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="text-align: center;">
+                                
+                                <button type="submit" class="btn btn-success" style="width: 100%; max-width: 200px;">Log In</button>
+                                
+                            </div>  
+                            <br>
+                        </form>
+                        <div class='row signup justify-content-around' >
+                            <div class='col-md-6'><label>Need an account ---> <a mat-button class='btn-signup' routerLink="/home/register">Sign up</a></label></div>
+                            <div class='col-md-5'>Forgot password
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div back>
+                    <div class="col-md-5 form-div">
+                        <div class="message-div" >
+                            {{message}}
+                            <div class="link-div">
+                                <a (click)="resendVerification()">Have not receice any mail</a>
+                            </div>
+                        </div>
+                        <div class='row signup justify-content-around' >
+                            <div class='col-md-6'>
+                                <label>Need an account -> <a mat-button class='btn-signup' routerLink="/home/register">Sign up</a>
+                                </label>
+                            </div>
+
+                            <div class='col-md-5'>Forgot password</div>
                             
-                            <input matInput type='email' formControlName='password'>
-                        </mat-form-field>
+                        </div>
                     </div>
+                    
                 </div>
-                <br>
-                <div class='row'>
-                <div class='col-md-3'></div>
-                <div class='col-md-5'>
-                    <button type="submit" class="btn btn-outline-dark btn-block">Log In</button>
-                </div>
-                </div>  
-                <br>
-                <div class='row signup justify-content-around' >
-                    <div class='col-md-6'><label>Need an account ---> <a mat-button class='btn-signup' routerLink="/home/register">Sign up</a></label></div>
-                    <div class='col-md-5'>Forgot password
-                    </div>
-                </div>
-                </form>
-            </div>
+            </ngx-flip>
         </div>
+        
     </div>
 </div>

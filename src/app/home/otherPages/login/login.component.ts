@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  flipDiv : boolean = false;
+  message : string = `Your email is not verified yet . Please verify your email by the link provided to your email`
  
   loginForm = this.fb.group({
     email : ['',[Validators.required,Validators.email]],
@@ -32,15 +35,25 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit(){
-    /*var formData = new FormData();
-    formData.append('username',this.loginForm.get('email').value);
-    formData.append('password',this.loginForm.get('password').value);
-    */console.log(this.loginForm.get('email').value);
-    this.homeService.login({'username':this.loginForm.get('email').value,'password':this.loginForm.get('password').value}).subscribe(result => {
+    
+    this.homeService.login( {'username':this.loginForm.get('email').value, 
+                            'password':this.loginForm.get('password').value})
+                    .subscribe(result => {
       if(result.success){
-        Swal.fire({text:'Login successfull.'});
+        if(result.emailConfirm == false){
+          Swal.fire({text : result.message}).then(result=>{
+            this.flipDiv = true
+          })
+      
+        }else {
+          Swal.fire('Login successfully!',
+          '',
+          'success')
+        }
+        
       }
       else{
+        
         Swal.fire({text : 'Login Failed'});
       }
     }),(err => {
@@ -50,23 +63,41 @@ export class LoginComponent implements OnInit {
   }
   logInWithGoogle(){
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(async user => {
-      await this.getUserDetail(user);
-      console.log(user)
+      await this.getUserDetail(user);         // not need of await
+      
       this.onSubmit();
     })
   }
-  async logInWithFacebook(){
+  logInWithFacebook(){
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(async user =>{
-    await this.getUserDetail(user);
+    await this.getUserDetail(user);               // not need of await
       this.onSubmit();
     })
   }
 
   getUserDetail(user){
-    console.log(user.email)
-    console.log(user.id)
     this.loginForm.get('email').patchValue(user.email);
     this.loginForm.get('password').patchValue(user.id);
-    console.log(this.loginForm)
+  }
+
+  resendVerification(){
+    if(!this.loginForm.get('email').value){
+      this.flipDiv = false;
+      return;
+    };
+    this.homeService.resendVerificationLink(this.loginForm.get('email').value).subscribe(result=>{
+      if(result.success){
+        Swal.fire(
+          'Email Sent!',
+          result.message,
+          'success'
+        ).then(result=>{
+          this.flipDiv = false;
+        })
+        
+      } else {
+        Swal.fire({text : result.message})
+      }
+    })
   }
 }

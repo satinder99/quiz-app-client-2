@@ -25,6 +25,11 @@ export class HomeService {
         .pipe(retry(2),catchError(this.handleError))
   }
 
+  resendVerificationLink(email : string):Observable<any>{
+    return this.http.get(`${this.url}/api/home/resendEmailVerification/${email}`)
+                .pipe(retry(2),catchError(this.handleError))
+  }
+
   private handleError(error: HttpErrorResponse) { 
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

@@ -29,8 +29,8 @@
     border-radius: 15px;
     padding-bottom: 0px;
     padding-left: 15px;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin: auto;
+    margin-top: 50px;
     
 }
 .signup{
@@ -58,5 +58,19 @@
     margin : 20px 0px;
     text-align: center;
     color: rgba(19, 150, 186, 1);
+}
 
+.message-div{
+    padding: 50px 25px;
+}
+
+.link-div{
+    margin-top: 25px;
+    text-align: center;
+    color: #3faaba;
+    text-decoration: underline;
+    a{
+        cursor: pointer;
+    }
+    
 }
