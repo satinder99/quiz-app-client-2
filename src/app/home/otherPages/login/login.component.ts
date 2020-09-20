@@ -6,6 +6,8 @@ import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angular
 import {HomeService} from '../../../services/home.service'
 import Swal from 'sweetalert2';
 
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,10 +22,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private authService : AuthService,
-    private homeService : HomeService
+    private homeService : HomeService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
+ 
   }
 
   flipDiv : boolean = false;
@@ -35,10 +39,11 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit(){
-    
+    this.spinner.show();
     this.homeService.login( {'username':this.loginForm.get('email').value, 
                             'password':this.loginForm.get('password').value})
                     .subscribe(result => {
+      this.spinner.hide();
       if(result.success){
         if(result.emailConfirm == false){
           Swal.fire({text : result.message}).then(result=>{

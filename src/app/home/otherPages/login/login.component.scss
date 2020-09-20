@@ -25,16 +25,17 @@
 }
 .form-div{
     background-color: white;
-    box-shadow: 0 0 15px darkgray;  
+    
     border-radius: 15px;
     padding-bottom: 0px;
     padding-left: 15px;
     margin: auto;
     margin-top: 50px;
     
+    
 }
 .signup{
-    background-color: rgb(119, 115, 115);
+    background-color: rgb(54, 51, 51);
     border-radius: 0px 0px 15px 15px;
     color : white;
     a{
@@ -45,6 +46,7 @@
     .btn-signup:hover{
         background-color: rgb(177, 181, 182);
     }
+    border: 1px solid white;
 }
 .mainrow{
 
