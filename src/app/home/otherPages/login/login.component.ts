@@ -27,12 +27,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.spinner.show();
  
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
   }
 
   flipDiv : boolean = false;
@@ -44,10 +39,11 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit(){
-    
+    this.spinner.show();
     this.homeService.login( {'username':this.loginForm.get('email').value, 
                             'password':this.loginForm.get('password').value})
                     .subscribe(result => {
+      this.spinner.hide();
       if(result.success){
         if(result.emailConfirm == false){
           Swal.fire({text : result.message}).then(result=>{

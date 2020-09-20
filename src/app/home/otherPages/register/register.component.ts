@@ -11,6 +11,8 @@ import {
   GoogleLoginProvider,
 } from "angularx-social-login";
 
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,7 +28,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb : FormBuilder,
     private authService : AuthService,
-    private homeService : HomeService
+    private homeService : HomeService,
+    private spinner: NgxSpinnerService
     ) {
     this.siteKey = '6LdWDMYZAAAAAD-E6pikrnyWpQ_2tFdZvBuKJavJ';
    }
@@ -57,9 +60,9 @@ export class RegisterComponent implements OnInit {
       Swal.fire({text : "Password not match"});
       return;
     }
-
+    this.spinner.show();
     this.homeService.signup(this.registerForm.value).subscribe((result)=>{
-
+      this.spinner.hide();
       if(result.success){
         Swal.fire(
           'Signup successfully!',
