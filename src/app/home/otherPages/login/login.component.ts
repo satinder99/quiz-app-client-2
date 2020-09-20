@@ -6,6 +6,8 @@ import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angular
 import {HomeService} from '../../../services/home.service'
 import Swal from 'sweetalert2';
 
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,10 +22,17 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private authService : AuthService,
-    private homeService : HomeService
+    private homeService : HomeService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
+    this.spinner.show();
+ 
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
   }
 
   flipDiv : boolean = false;

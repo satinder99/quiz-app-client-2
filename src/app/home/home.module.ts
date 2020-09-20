@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpClientModule} from '@angular/common/http'
 import { HomeRoutingModule } from './home-routing.module';
@@ -7,7 +7,9 @@ import { RegisterComponent } from './otherPages/register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlipModule } from 'ngx-flip';
 
-import {HomeService} from '../services/home.service'
+import {HomeService} from '../services/home.service';
+
+import { NgxSpinnerModule } from "ngx-spinner";
 //Angualr Material
 import * as Material from '@angular/material';
 
@@ -35,7 +37,8 @@ import { LoginComponent } from './otherPages/login/login.component';
     FormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    FlipModule, 
+    FlipModule,
+    NgxSpinnerModule,
     Material.MatToolbarModule,
     Material.MatGridListModule,
     Material.MatInputModule,
@@ -47,6 +50,7 @@ import { LoginComponent } from './otherPages/login/login.component';
     Material.MatSelectModule,
     Material.MatButtonModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers : [
     HomeService
   ],
