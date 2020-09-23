@@ -5,7 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 
 //charts and schematics
-import { ChartsModule} from 'ng2-charts';
+import { ChartsModule, ThemeService} from 'ng2-charts';
 import { UserNavComponent } from './user-nav/user-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -37,6 +37,9 @@ import { ProgressOfSkillsComponent } from './charts/progress-of-skills/progress-
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+  ],
+  providers:[
+    ThemeService
   ]
 })
 export class UserModule { }
