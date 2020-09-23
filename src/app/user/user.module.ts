@@ -17,10 +17,13 @@ import { UserDashComponent } from './user-dash/user-dash.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { CardComponent } from './card/card.component';
+import { TechnicalSkillsChartComponent } from './charts/technical-skills-chart/technical-skills-chart.component';
+import { ProgressOfSkillsComponent } from './charts/progress-of-skills/progress-of-skills.component';
 
 
 @NgModule({
-  declarations: [UserComponent, UserNavComponent, UserDashComponent],
+  declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
