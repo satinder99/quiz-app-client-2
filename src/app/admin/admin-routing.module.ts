@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
+import {DashboardComponent} from './otherPages/dashboard/dashboard.component'
 
 const routes: Routes = [{ 
   path: '', component: AdminComponent , pathMatch : 'prefix',
   children : [
-                      // All other router come under children of Admin Component
+    {path : '', component : DashboardComponent}
   ]}
 ];
 
