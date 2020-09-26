@@ -3,13 +3,34 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
+import { DashboardComponent } from './otherPages/dashboard/dashboard.component';
+import { NavbarComponent } from './commonPages/navbar/navbar.component';
+import { SidebarComponent } from './commonPages/sidebar/sidebar.component';
+import { FooterComponent } from './commonPages/footer/footer.component';
 
+import {MatInputModule} from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import * as Material from '@angular/material';
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [
+    AdminComponent, 
+    DashboardComponent, 
+    NavbarComponent, 
+    SidebarComponent, 
+    FooterComponent,
+
+  ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatInputModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    FormsModule,
+    Material.MatSelectModule,
   ]
 })
 export class AdminModule { }
