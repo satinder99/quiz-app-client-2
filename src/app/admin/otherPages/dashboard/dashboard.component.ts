@@ -77,4 +77,9 @@ export class DashboardComponent implements OnInit {
   submit(){
     console.log(this.quiz.value)
   }
+
+  byFile : boolean = false;
+  toggleUpload(){
+    this.byFile = !this.byFile
+  }
 }

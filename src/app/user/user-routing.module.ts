@@ -7,8 +7,8 @@ import { UserDashComponent } from './user-dash/user-dash.component';
 const routes: Routes = [
   { path: '', component: UserComponent, pathMatch : 'prefix',
     children : [
-                          // All other router come under children of usercomponent
-              {path : 'dashboard', component : UserDashComponent}
+      {path : 'dashboard', component : UserDashComponent},
+      {path : '**', redirectTo : '/user/dashboard', pathMatch : 'full'}
     ]
 }
 ];
