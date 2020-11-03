@@ -15,7 +15,12 @@ $darkBlack : #363738;
     min-height: 100vh;
 }
 
+.main-detail{
+    justify-content: space-between;
+}
+
 .top-tabbar{
+    display: flex;
     background-color: $darkBlue;
     padding: 15px;
     color: white;
@@ -28,6 +33,10 @@ $darkBlack : #363738;
 .span-tab-active {
     background: rgba(255,255,255, 0.3);
     border-radius: 15px;
+}
+.save-tab{
+    flex-grow: 1;
+    text-align: right;
 }
 
 .main{
@@ -53,11 +62,44 @@ $darkBlack : #363738;
     background-color: white;
 }
 .main-detail-div{
+    cursor: pointer;
     padding: 0;
     span{
         background-color: $darkBlue;
         padding: 2px 5px;
         color: white;
-        box-shadow: 1px 1px 5px #308bb0;
+        box-shadow: 1px 1px 1px #308bb0;
+        &:hover{
+            box-shadow: 1px 1px 5px #308bb0;  
+        }
     }
+}
+
+.options{
+    margin-right: 10px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    
+}
+
+.list-div{
+    width: 100%;
+    padding: 10px;
+    table{
+        width: 100%;
+        td, th{
+            padding-right: 2px;
+        }
+        
+    }
+}
+
+.question-column{
+    min-width: 300px;
+}
+.data-row:hover{
+    transform: scale(0.99);
+    cursor: pointer;
+    background-color: rgba(173, 173, 173, 0.3)
 }
