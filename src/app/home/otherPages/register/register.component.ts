@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
   }
   signUpwithFacebook(){
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user=>{
-      this.fetchUserDetails(user )
+      this.fetchUserDetails(user)
     }).catch(err=>{
       console.log(err)
     })
