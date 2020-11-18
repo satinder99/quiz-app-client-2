@@ -18,6 +18,6 @@ export class UserNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  menuItems = ['dashboard', 'sales', 'orders', 'customers', 'products'];
+  menuItems = ['dashboard', 'Edit profile', 'Regestered events', 'Results', 'Courses'];
 
 }

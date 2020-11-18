@@ -21,12 +21,31 @@ import { CardComponent } from './card/card.component';
 import { TechnicalSkillsChartComponent } from './charts/technical-skills-chart/technical-skills-chart.component';
 import { ProgressOfSkillsComponent } from './charts/progress-of-skills/progress-of-skills.component';
 
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import * as Material from '@angular/material';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent],
+  declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent, UserEditProfileComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
+
+    FormsModule,
+    ReactiveFormsModule,
+
+    Material.MatInputModule,
+    Material.MatFormFieldModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule,
+    Material.MatSelectModule,
+    Material.MatCheckboxModule,
+
+    NgxSpinnerModule,
+
     ChartsModule,
     LayoutModule,
     MatToolbarModule,
@@ -37,9 +56,11 @@ import { ProgressOfSkillsComponent } from './charts/progress-of-skills/progress-
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    SlickCarouselModule
   ],
   providers:[
-    ThemeService
+    ThemeService,
+    Material.MatDatepickerModule
   ]
 })
 export class UserModule { }
