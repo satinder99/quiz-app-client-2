@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import * as Material from '@angular/material';
+import { FileUploadComponent } from './otherPages/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import * as Material from '@angular/material';
     DashboardComponent, 
     NavbarComponent, 
     SidebarComponent, 
-    FooterComponent,
+    FooterComponent, FileUploadComponent,
 
   ],
   imports: [

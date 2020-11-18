@@ -7,8 +7,7 @@ import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.
 
 const routes: Routes = [
   { path: '', component: UserComponent, pathMatch : 'prefix',
-    children : [
-                          // All other router come under children of usercomponent
+    children : [ // All other router come under children of usercomponent
               {path : 'dashboard', component : UserDashComponent},
               {path : 'editProfile',component : UserEditProfileComponent}
     ]
