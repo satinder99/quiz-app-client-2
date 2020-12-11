@@ -1,0 +1,40 @@
+@media screen and (min-width: 601px) {
+  .headingLine {
+    font-size: 50px;
+  }
+
+  .testDetails{
+      font-size: 20px;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .headingLine{
+    font-size: 30px;
+  }
+}
+
+.questionComponent{
+    border: 2px dashed #8f918e;
+    padding : 20px;
+    border-radius: 10px;
+
+    word-wrap: break-word
+}
+
+$bg-color: white;
+$dot-color: #fcba05;
+
+// Dimensions
+$dot-size: 1px;
+$dot-space: 6px;
+
+.main1{
+	background:
+		linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center,
+		linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+		$dot-color;
+    background-size: $dot-space $dot-space;
+    
+} 
