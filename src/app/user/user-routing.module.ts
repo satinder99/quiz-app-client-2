@@ -6,6 +6,8 @@ import { UserDashComponent } from './user-dash/user-dash.component';
 import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
 import { UserRegisteredEventsComponent } from './user-registered-events/user-registered-events.component';
 import { DisplayTestComponent } from './display-test/display-test.component';
+import { ResultComponent } from './result/result.component';
+import { ShowChartComponent } from './show-chart/show-chart.component';
 
 const routes: Routes = [
   { path: '', component: UserComponent, pathMatch : 'prefix',
@@ -13,7 +15,9 @@ const routes: Routes = [
               {path : 'dashboard', component : UserDashComponent},
               {path : 'edit profile',component : UserEditProfileComponent},
               {path : 'registered events',component : UserRegisteredEventsComponent},
-              {path : 'test',component : DisplayTestComponent}
+              {path : 'test',component : DisplayTestComponent},
+              {path : 'results', component : ResultComponent},
+              {path : 'results/:testId', component : ShowChartComponent}
     ]
 }
 ];

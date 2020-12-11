@@ -29,9 +29,11 @@ import * as Material from '@angular/material';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { UserRegisteredEventsComponent } from './user-registered-events/user-registered-events.component';
 import { DisplayTestComponent } from './display-test/display-test.component';
+import { ResultComponent } from './result/result.component';
+import { ShowChartComponent } from './show-chart/show-chart.component';
 
 @NgModule({
-  declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent, UserEditProfileComponent, UserRegisteredEventsComponent, DisplayTestComponent],
+  declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent, UserEditProfileComponent, UserRegisteredEventsComponent, DisplayTestComponent, ResultComponent, ShowChartComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

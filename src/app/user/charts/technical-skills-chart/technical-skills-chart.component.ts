@@ -12,8 +12,8 @@ export class TechnicalSkillsChartComponent implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-  public pieChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData: SingleDataSet = [300, 500, 100];
+  public pieChartLabels: Label[] = ['Attempted but right', 'Not Attempted', 'Attempted but wrong'];
+  public pieChartData: SingleDataSet = [29, 5, 6];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
