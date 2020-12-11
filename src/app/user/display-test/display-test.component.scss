@@ -1,3 +1,9 @@
+.createdBy{
+    text-align: end;
+}
+.test-name{
+    text-align: center;
+}
 @media screen and (min-width: 601px) {
   .headingLine {
     font-size: 50px;
@@ -38,3 +44,13 @@ $dot-space: 6px;
     background-size: $dot-space $dot-space;
     
 } 
+
+.test-question{
+    font-weight: bold;
+}
+.radio-option{
+    display: block;
+}
+.ques-button-row{
+    justify-content: center;
+}   
