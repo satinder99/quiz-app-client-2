@@ -7,20 +7,16 @@ import { retry, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class QuizService {
+export class AdminService {
 
-  constructor(
-    private http : HttpClient
-  ) { }
+  constructor(private http : HttpClient) { }
 
-  url : string = environment.apiUrl;
-  ss= this.url + "/api/home/addQuiz";
-  
-  addQuiz(data : any) : Observable<any>{
-    console.log("reached to addQuiz service funtion");
-    return this.http
-            .post(this.url + '/api/home/addQuiz',data)
-            .pipe(retry(2),catchError(this.handleError))
+  private url : string = environment.apiUrl;
+
+  createQuiz(data : any) : Observable<any>{
+    console.log("data in service", data)
+    return this.http.post(`${this.url}/api/admin/createquiz`, data)
+                .pipe(retry(2), catchError(this.handleError))
   }
 
   private handleError(error: HttpErrorResponse) { 

@@ -14,7 +14,7 @@
         </span>
 
         <span class="tabs save-tab">
-            Save and Continue
+            <label (click)="saveQuiz()">Save and Continue</label>
         </span>
     </div>
     <!-- <div class="main-header">
@@ -46,7 +46,7 @@
                 
                 <mat-form-field *ngIf="!editQuizcreatedBy; else editcreatedBy" class="example-form-field" appearance="outline">
                     <mat-label>Created By</mat-label>
-                    <input [(ngModel)]='quizDetails.createdBy' matInput type="text" >
+                    <input [(ngModel)]='quizDetails.createdByName' matInput type="text" >
                 </mat-form-field>
 
                 <ng-template #editcreatedBy>
@@ -58,7 +58,7 @@
                 
                 <mat-form-field *ngIf="!editQuizDate; else editDate" class="example-form-field" appearance="outline">
                     <mat-label>Date</mat-label>
-                    <input [(ngModel)]='quizDetails.date' createdBy matInput type="date" >
+                    <input type="date" [min] = "minDate" [(ngModel)]='quizDetails.date' matInput  >
                 </mat-form-field>
 
                 <ng-template #editDate>
@@ -93,7 +93,7 @@
                             <mat-label>type</mat-label>
                             <mat-select (selectionChange)="addOptions($event)">
                                 <mat-option  value="mcq">MCQ</mat-option>
-                                <mat-option  value="other">Yes-no</mat-option>
+                                <!-- <mat-option  value="other">Yes-no</mat-option> -->
                             </mat-select>
                         </mat-form-field>
                     </div>
