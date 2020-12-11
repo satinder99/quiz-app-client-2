@@ -1,28 +1,26 @@
 <div class=''>
     
     <div class = 'row'>
-        <div class='col-md-4'></div>
-        <div class='col-md-4'>Welcome to {{test1.name}} Test</div>
-        <div class = 'col-md-4'></div>
+        <div class='col-md-8 test-name'> <h3>Welcome to {{test1.name}} Test</h3></div>
+        <div class = 'col-md-4 createdBy'> Created By : {{test1.createdBy}}</div>
     </div>
 
-    <div class='row'>
+    <!-- <div class='row'>
         <div class='col-md-2'>Question No {{ques_no + 1}} </div>
         <div class = 'col-md-8'></div>
         <div class='col-md-2'>Created By : {{test1.createdBy}}</div>
-    </div>
+    </div> -->
 
-    <div class='row'>
+    <!-- <div class='row'>
         <div class='col-md-2'></div>
         <div class = 'col-md-8'></div>
         <div class='col-md-2'>date of test : {{test1.date}}</div>
-    </div>
+    </div> -->
     <br>
     <br>
     <div class='row'>
-        <div class='col-md-2'></div>
-        <div class='col-md-6'>{{test1.questionArray[ques_no].question}}</div>
-        <div class='col-md-4'></div>
+        <div class='col-md-1'></div>
+        <div class='col-md-10 test-question'>{{test1.questionArray[ques_no].question}}</div>
     </div>
 
     <div class='row'>
