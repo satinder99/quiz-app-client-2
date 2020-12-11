@@ -37,6 +37,12 @@ $darkBlack : #363738;
 .save-tab{
     flex-grow: 1;
     text-align: right;
+    label:hover{
+        cursor: pointer;
+        padding: 0px 5px 0px 5px;
+        background: rgba(255,255,255, 0.3);
+        border-radius: 15px;
+    }
 }
 
 .main{
