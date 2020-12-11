@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 import * as xlsx from 'xlsx';
 
@@ -13,6 +14,8 @@ export class FileUploadComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @Output() newQuestions : any = new EventEmitter();
 
   questions : any;
   onfileUpload(event : any){
@@ -33,17 +36,41 @@ export class FileUploadComponent implements OnInit {
       const wb : xlsx.WorkBook = xlsx.read(binaryString, {type : 'binary'});
 
       const sheetName : string = wb.SheetNames[0];
-      console.log("sheet name", sheetName);
 
       const ws : xlsx.WorkSheet = wb.Sheets[sheetName];
-      console.log("data is : ", ws);
       
       var data = (xlsx.utils.sheet_to_json(ws, {header : 1}));
-      console.log(data)
+
+      for(let i = 1; i < data.length; i++) {
+        let options = [];
+        options.push(data[i][1]);
+        options.push(data[i][2]);
+        options.push(data[i][3]);
+        options.push(data[i][4]);
+        let currentQuestion = {
+          question : data[i][0],
+          options : options,
+          correctIndex : data[i][5],
+          type : 'mcq',
+          correctAns : options[data[i][5] - 1]
+        }
+
+        this.questionArray.push(currentQuestion);
+      }
+
+      this.newQuestions.emit(this.questionArray);
     };
 
+  
     reader.readAsBinaryString(target.files[0])  // file reading completed it trigger onload;
 
-    
   }
+
+  questionArray : Array<any> = [];
+
+  question : ""
+  type : ''
+  options : []
+  correctAns : ''
+  correctIndex : null
 }

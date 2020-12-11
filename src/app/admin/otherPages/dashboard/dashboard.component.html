@@ -193,7 +193,7 @@
         </div>
 
         <div *ngIf='activeTab == "fileupload"' class="question-main quiz-questions row apply-margin mat-elevation-z1">
-            <app-file-upload></app-file-upload>
+            <app-file-upload (newQuestions)="newQuestions($event)"></app-file-upload>
         </div>
 
         <div class="list-div apply-margin mat-elevation-z1">

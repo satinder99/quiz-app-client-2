@@ -165,4 +165,12 @@ export class DashboardComponent implements OnInit {
     this.currentQuestion = this.quizDetails.questionArray[index];
     this.update = true;
   }
+
+  newQuestions(event){
+    console.log(event)
+    for(let i = 0; i < event.length; i++){
+      this.quizDetails.questionArray.push(event[i]);
+    }
+    this.activeTab = 'default';
+  }
 }
