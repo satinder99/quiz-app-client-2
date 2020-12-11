@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -14,6 +15,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import * as Material from '@angular/material';
 import { FileUploadComponent } from './otherPages/file-upload/file-upload.component';
+import { AdminService } from '../services/admin.service';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,16 @@ import { FileUploadComponent } from './otherPages/file-upload/file-upload.compon
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     AdminRoutingModule,
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
     Material.MatSelectModule,
+  ],
+  providers : [
+    AdminService
   ]
 })
 export class AdminModule { }

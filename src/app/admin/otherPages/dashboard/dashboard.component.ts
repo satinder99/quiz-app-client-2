@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Form, FormArray, FormBuilder, FormGroup} from '@angular/forms'
+import Swal from 'sweetalert2';
+
+import {AdminService} from '../../../services/admin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +13,18 @@ import {Form, FormArray, FormBuilder, FormGroup} from '@angular/forms'
 export class DashboardComponent implements OnInit {
 
   constructor(
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private adminService : AdminService
   ) { }
 
+  // minDate : Date
+  minDate : any
   ngOnInit() {
-    
+    let date = new Date();
+    let month = date.getMonth()+1;
+    let year = date.getFullYear();
+    let day = date.getDate();
+    this.minDate = `${year}-${month}-${day}`
     // this.quiz = this.fb.group({
     //   name : ['', ],
     //   createdBy : [''],
@@ -76,8 +86,6 @@ export class DashboardComponent implements OnInit {
 
   submit(){
     console.log(this.quiz.value)
-    
-    
   }
   activeTab : string = 'default';
 
@@ -91,7 +99,8 @@ export class DashboardComponent implements OnInit {
 
   quizDetails = {
     name : '',
-    createdBy : '',
+    createdByName : '',
+    createdBy : '5fd34624161ae162f4b94241',
     date : '',
     time : '',
     questionArray : []
@@ -129,7 +138,8 @@ export class DashboardComponent implements OnInit {
   }
 
   questionAdd(){
-    console.log(this.quizDetails)
+
+    this.currentQuestion.type = 'mcq'
     if(!this.currentQuestion.type) return;
     if(!this.currentQuestion.question) return;
     if(!this.currentQuestion.options) return;
@@ -142,16 +152,14 @@ export class DashboardComponent implements OnInit {
 
     if(this.update){
 
-      console.log("update question")
       this.quizDetails.questionArray[this.updateIndex] = this.currentQuestion;
       this.refreshCurrentQuestion();
       this.update = false;
       this.updateIndex = null;
+
     } else {
       
-      console.log("add question");
       this.quizDetails.questionArray.push(this.currentQuestion);
-      console.log(this.quizDetails);
       this.refreshCurrentQuestion();
     }
   }
@@ -166,5 +174,54 @@ export class DashboardComponent implements OnInit {
     this.updateIndex = index;
     this.currentQuestion = this.quizDetails.questionArray[index];
     this.update = true;
+  }
+
+  newQuestions(event){
+    for(let i = 0; i < event.length; i++){
+      this.quizDetails.questionArray.push(event[i]);
+    }
+    this.activeTab = 'default';
+  }
+
+  saveQuiz(){
+
+
+    if(!this.quizDetails.name){
+      return Swal.fire({text : "Enter quiz name"})
+    }
+    if(!this.quizDetails.date){
+      return Swal.fire({text : "Enter quiz date"})
+    }
+    if(!this.quizDetails.time){
+      return Swal.fire({text : "Enter quiz time"})
+    }
+    if(this.quizDetails.questionArray.length == 0){
+      return Swal.fire({text : "Enter questions"})
+    }
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, save it!'
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        
+        this.adminService.createQuiz(this.quizDetails).subscribe(result=>{
+          Swal.fire(
+            'Saved!',
+            'Your file has been saved.',
+            'success'
+          ).then(result=>{
+            window.location.reload()
+          })
+        })
+        
+      }
+    })
   }
 }
