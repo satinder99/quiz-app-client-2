@@ -1,0 +1,46 @@
+<div class=''>
+    
+    <div class = 'row'>
+        <div class='col-md-4'></div>
+        <div class='col-md-4'>Welcome to {{test1.name}} Test</div>
+        <div class = 'col-md-4'></div>
+    </div>
+
+    <div class='row'>
+        <div class='col-md-2'>Question No {{ques_no + 1}} </div>
+        <div class = 'col-md-8'></div>
+        <div class='col-md-2'>Created By : {{test1.createdBy}}</div>
+    </div>
+
+    <div class='row'>
+        <div class='col-md-2'></div>
+        <div class = 'col-md-8'></div>
+        <div class='col-md-2'>date of test : {{test1.date}}</div>
+    </div>
+    <br>
+    <br>
+    <div class='row'>
+        <div class='col-md-2'></div>
+        <div class='col-md-6'>{{test1.questionArray[ques_no].question}}</div>
+        <div class='col-md-4'></div>
+    </div>
+
+    <div class='row'>
+        <div class='col-md-2'></div>
+        <div class='col-md-6'>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="correct_answere">
+                <mat-radio-button class="example-radio-button" *ngFor="let option of test1.questionArray[ques_no].options" [value]="option">
+                    {{option.value}}
+                    <br/>
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class='col-md-4'></div>
+    </div>
+
+    <div class='row'>
+        <div class='col-md-2'></div>
+        <div class='col-md-5'><button (click) = prevByOne()>Prev</button></div>
+        <div class='col-md-5'><button (click) = nextByOne()>Next</button></div>
+    </div>
+</div>

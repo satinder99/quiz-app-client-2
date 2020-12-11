@@ -12,11 +12,13 @@ const routes: Routes = [
 
 { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 
+{ path: 'teacher', loadChildren: () => import('./teacher/teacher.module').then(m => m.TeacherModule) },
+
 { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
 
-{path: '', redirectTo: '/home',pathMatch: 'full'},
+/*{path: '', redirectTo: '/home',pathMatch: 'full'},
 {path: '**', redirectTo: '/home',pathMatch: 'full'}
-
+*/
 ];
 
 

@@ -1,0 +1,97 @@
+<div class="container-fluid main">
+    <div class="main-header">
+        <h2>Add new quiz</h2>
+    </div>
+    <form [formGroup]='quiz'>
+        <div class="row">
+            <div class="col-md-6">
+                <span style="margin: 25px; font-size: 25px;">Name</span>
+
+                <mat-form-field class="example-form-field" appearance="outline">
+                    <mat-label>Quiz name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <span style="margin: 25px; font-size: 25px;">Created By</span>
+
+                <mat-form-field class="example-form-field" appearance="outline">
+                    <mat-label>Created By</mat-label>
+                    <input matInput type="text" formControlName="createdBy">
+                </mat-form-field>
+
+                <span style="margin: 25px; font-size: 25px;">Teacher Id</span>
+
+                <mat-form-field class="example-form-field" appearance="outline">
+                    <mat-label>Teacher Id</mat-label>
+                    <input matInput type="text" formControlName="teacherId">
+                </mat-form-field>
+            </div>
+            
+            <div class="col-md-6">
+                <span style="margin: 25px; font-size: 25px;">Held On</span>
+
+                <mat-form-field class="example-form-field" appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date" formControlName="date">
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <span style="margin: 25px; font-size: 25px;">Held at</span>
+
+                <mat-form-field class="example-form-field" appearance="outline">
+                    <mat-label>Time</mat-label>
+                    <input matInput type="time" formControlName='time'>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="question-main">
+            <h2>Add questions here</h2>
+        
+            <div  formArrayName="questionArray" class="col-12" *ngFor="let ques of quiz.get('questionArray').controls; index as ind">
+
+            
+                <div [formGroupName] ="ind" class="row">
+                    <div class="col-md-12">
+                        <mat-form-field class="example-form-field" appearance="outline">
+                            <mat-label>type</mat-label>
+                            <mat-select formControlName='type' (selectionChange)="addOptions($event.value, ind)">
+                                <mat-option  value="mcq">MCQ</mat-option>
+                                <mat-option  value="other">Yes-no</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-12"> 
+                        <mat-form-field class="example-form-field full-width" appearance="outline">
+                            <mat-label>Question</mat-label>
+                            <input matInput type="text" formControlName='question'>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div formArrayName="options" *ngFor='let option of ques.get("options").controls; index as i' class="col-md-3">
+                        <div [formGroupName]='i'>
+                            <mat-form-field class="example-form-field" appearance="outline">
+                                <mat-label>option {{i+1}}</mat-label>
+                                <input matInput type="text" formControlName='value'>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-12 add-more">
+                <button class="btn btn-info" (click)='addNewQuestion()'>Add More</button>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-success" (click)="submit()">Submit</button>
+            </div>
+        
+        </div>
+    </form>
+    <div>{{quiz.value | json}}</div>
+</div>

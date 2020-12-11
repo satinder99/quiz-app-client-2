@@ -27,9 +27,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import * as Material from '@angular/material';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { UserRegisteredEventsComponent } from './user-registered-events/user-registered-events.component';
+import { DisplayTestComponent } from './display-test/display-test.component';
 
 @NgModule({
-  declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent, UserEditProfileComponent],
+  declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent, UserEditProfileComponent, UserRegisteredEventsComponent, DisplayTestComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -43,6 +45,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     Material.MatNativeDateModule,
     Material.MatSelectModule,
     Material.MatCheckboxModule,
+    Material.MatTableModule,
+    Material.MatRadioModule,
 
     NgxSpinnerModule,
 

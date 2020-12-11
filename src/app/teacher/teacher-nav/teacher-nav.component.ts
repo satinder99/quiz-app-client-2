@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-user-nav',
-  templateUrl: './user-nav.component.html',
-  styleUrls: ['./user-nav.component.scss']
+  selector: 'app-teacher-nav',
+  templateUrl: './teacher-nav.component.html',
+  styleUrls: ['./teacher-nav.component.scss']
 })
-export class UserNavComponent {
+export class TeacherNavComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -18,6 +18,9 @@ export class UserNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  menuItems = ['dashboard', 'edit profile', 'registered events', 'results', 'courses'];
+  menuItems = ['dashboard', 'edit profile', 'schedule test', 'results', 'courses'];
+
+  ngOnInit() {
+  }
 
 }

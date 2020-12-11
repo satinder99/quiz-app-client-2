@@ -76,6 +76,8 @@ export class DashboardComponent implements OnInit {
 
   submit(){
     console.log(this.quiz.value)
+    
+    
   }
   activeTab : string = 'default';
 
