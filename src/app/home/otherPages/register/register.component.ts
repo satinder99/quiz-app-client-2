@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
         this.cPassword = null;
         this.type = 'local'
       } else {
-      Swal.fire({text : "Something went wrong"})
+      Swal.fire({text : result.message})
       }
     }),(err=>{
       Swal.fire({text : "Some error occured"})
@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
   }
   signUpwithFacebook(){
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user=>{
-      this.fetchUserDetails(user )
+      this.fetchUserDetails(user)
     }).catch(err=>{
       console.log(err)
     })

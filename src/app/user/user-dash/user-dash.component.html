@@ -1,7 +1,9 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list cols="{{( cardLayout | async )?.columns}}" rowHeight="300px">
-    <mat-grid-tile *ngFor="let i of [1,2,3,4]" [colspan]="( cardLayout | async )?.miniCard.cols" [rowspan]="( cardLayout | async )?.miniCard.rows">
+    <ngx-slick-carousel dots="true" infinite="false" speed="300" slides-to-show="5" touch-move="false" slides-to-scroll="1">
+      
+    <mat-grid-tile *ngFor="let i of upcoming_events" [colspan]="( cardLayout | async )?.miniCard.cols" [rowspan]="( cardLayout | async )?.miniCard.rows">
       <!--<mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
@@ -21,17 +23,47 @@
       </mat-card>
     -->
     <!--mini-cards-->
-     <app-card title="Card {{i}}"><div>Mini Card Content Here</div></app-card>
+     <app-card title="{{i.course}}">
+       <img src = "{{i.url}}" height = "150px">
+       <div>DATE : {{i.date}}</div>
+       <div>TIME : {{i.time}}</div>
+      </app-card>
     </mat-grid-tile>
+  </ngx-slick-carousel>
 
     <!--Charts-->
-      <mat-grid-tile *ngFor="let i of [5, 6]" [colspan]="( cardLayout | async )?.chart.cols"
+      <!--<mat-grid-tile *ngFor="let i of [5, 6]" [colspan]="( cardLayout | async )?.chart.cols"
         [rowspan]="( cardLayout | async )?.chart.rows">
         <app-card title="Card {{i}}">
           <app-progress-of-skills></app-progress-of-skills>
         </app-card>
       </mat-grid-tile>
+    -->
+      <mat-grid-tile *ngFor="let i of [5]" [colspan]="( cardLayout | async )?.personal.cols"
+        [rowspan]="( cardLayout | async )?.personal.rows">
+        <div class="container">
+          <div class="row">
 
+            <div class="col-md-4" id="p_d2">
+              <img id = "user_pic"src="https://static.thenounproject.com/png/3070444-200.png" alt="user image">
+            </div>
+
+            <div class="col-md-2"></div>
+
+            <div id = "p_d1" class="cols-md-6">
+              <div>Name : {{user_personal_detail.name}}</div>
+              <div>Age : {{user_personal_detail.age}}</div> 
+              <div>Contact : {{user_personal_detail.contact}}</div>
+              <div>Mail : {{user_personal_detail.mail}}</div>
+              <div>Rank : {{user_personal_detail.rank}}</div>
+              <div>Highest qualification : {{user_personal_detail.highest_qualification}}</div>
+            </div>
+            
+            
+          </div>
+        </div>
+      </mat-grid-tile>
+<!--
       <mat-grid-tile *ngFor="let i of [7, 8]" [colspan]="( cardLayout | async )?.chart.cols"
         [rowspan]="( cardLayout | async )?.chart.rows">
         <app-card title="Card {{i}}">
@@ -40,9 +72,9 @@
       </mat-grid-tile>
    
 
-      <!--Table-->
+      Table
       <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" [rowspan]="( cardLayout | async )?.table.rows">
         <app-card title="Card 9"><div>Table Content Here</div></app-card>
-      </mat-grid-tile>
+      </mat-grid-tile>-->
     </mat-grid-list>
 </div>
