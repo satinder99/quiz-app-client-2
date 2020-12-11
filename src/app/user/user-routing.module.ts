@@ -9,8 +9,7 @@ import { DisplayTestComponent } from './display-test/display-test.component';
 
 const routes: Routes = [
   { path: '', component: UserComponent, pathMatch : 'prefix',
-    children : [
-                          // All other router come under children of usercomponent
+    children : [ // All other router come under children of usercomponent
               {path : 'dashboard', component : UserDashComponent},
               {path : 'edit profile',component : UserEditProfileComponent},
               {path : 'registered events',component : UserRegisteredEventsComponent},

@@ -1,90 +1,236 @@
 <div class="container-fluid main">
-    <div class="main-header">
-        <h2>Add new quiz</h2>
-    </div>
-    <form [formGroup]='quiz'>
-        <div class="row">
-            <div class="col-md-6">
-                <span style="margin: 25px; font-size: 25px;">Name</span>
+    <div class="top-tabbar">
+        <span class="tabs manuall-enter" [ngClass]='activeTab == "default" ? "span-tab-active" : " "' 
+            (click)="toggleUpload('default')">
+            Enter questions
+        </span>
+        <span class="tabs file-enter" [ngClass]='activeTab == "fileupload" ? "span-tab-active" : " "' 
+            (click)="toggleUpload('fileupload')">
+            Upload file
+        </span>
+        <span class="tabs auto-generate" [ngClass]='activeTab == "autogenerate" ? "span-tab-active" : " "'
+             (click)="toggleUpload('autogenerate')" >
+            Auto Generate
+        </span>
 
-                <mat-form-field class="example-form-field" appearance="outline">
+        <span class="tabs save-tab">
+            Save and Continue
+        </span>
+    </div>
+    <!-- <div class="main-header">
+        <h2>Add new quiz</h2>
+    </div> -->
+
+    <div class="row quiz-details">
+
+        <div class="row  apply-margin mat-elevation-z1 main-detail">
+
+            <div class="col-12 main-detail-div" >
+                <span> Quiz-details</span>
+            </div>
+        
+            <div class="">
+                <!-- <span  class="detail-label">Name</span> -->
+
+                <mat-form-field *ngIf="!editQuizName ; else showName" class="example-form-field" appearance="outline">
                     <mat-label>Quiz name</mat-label>
-                    <input matInput type="text" formControlName="name">
+                    <input [(ngModel)]='quizDetails.name' matInput type="text" >
                 </mat-form-field>
+
+                <ng-template #showName>
+                    {{(quiz.get('name').value ? quiz.get('name').value : 'Enter quiz name')}}
+                </ng-template>
             </div>
 
-            <div class="col-md-6">
-                <span style="margin: 25px; font-size: 25px;">Created By</span>
-
-                <mat-form-field class="example-form-field" appearance="outline">
+            <div class="">
+                
+                <mat-form-field *ngIf="!editQuizcreatedBy; else editcreatedBy" class="example-form-field" appearance="outline">
                     <mat-label>Created By</mat-label>
-                    <input matInput type="text" formControlName="createdBy">
+                    <input [(ngModel)]='quizDetails.createdBy' matInput type="text" >
                 </mat-form-field>
+
+                <ng-template #editcreatedBy>
+                    {{(quiz.get('createdBy').value ? quiz.get('name').value : 'Enter quiz name')}}
+                </ng-template>
             </div>
             
-            <div class="col-md-6">
-                <span style="margin: 25px; font-size: 25px;">Held On</span>
-
-                <mat-form-field class="example-form-field" appearance="outline">
+            <div class="">
+                
+                <mat-form-field *ngIf="!editQuizDate; else editDate" class="example-form-field" appearance="outline">
                     <mat-label>Date</mat-label>
-                    <input matInput type="date" formControlName="date">
+                    <input [(ngModel)]='quizDetails.date' createdBy matInput type="date" >
                 </mat-form-field>
+
+                <ng-template #editDate>
+                    {{(quiz.get('date').value ? quiz.get('name').value : 'Enter quiz name')}}
+                </ng-template>
             </div>
 
-            <div class="col-md-6">
-                <span style="margin: 25px; font-size: 25px;">Held at</span>
-
-                <mat-form-field class="example-form-field" appearance="outline">
+            <div class="">
+                
+                <mat-form-field *ngIf="!editQuizTime; else editTime" class="example-form-field" appearance="outline">
                     <mat-label>Time</mat-label>
-                    <input matInput type="time" formControlName='time'>
+                    <input [(ngModel)]='quizDetails.time' matInput type="time" >
                 </mat-form-field>
+
+                <ng-template #editTime>
+                    {{(quiz.get('time').value ? quiz.get('name').value : 'Enter quiz name')}}
+                </ng-template>
             </div>
         </div>
 
-        <div class="question-main">
-            <h2>Add questions here</h2>
-        
-            <div  formArrayName="questionArray" class="col-12" *ngFor="let ques of quiz.get('questionArray').controls; index as ind">
+        <div *ngIf='activeTab == "default"' class="question-main quiz-questions row apply-margin mat-elevation-z1">
+            <div class="col-12 main-detail-div" (click)="questionAdd()" >
+                <span>{{update ? 'Update question' : 'Add question'}} </span>
+            </div>
 
-            
-                <div [formGroupName] ="ind" class="row">
-                    <div class="col-md-12">
+            <div   class="col-12">
+
+                <div  class="row" style="margin: 15px 0">
+
+                    <div class="" style="margin-right: 10px;">
                         <mat-form-field class="example-form-field" appearance="outline">
                             <mat-label>type</mat-label>
-                            <mat-select formControlName='type' (selectionChange)="addOptions($event.value, ind)">
+                            <mat-select (selectionChange)="addOptions($event)">
                                 <mat-option  value="mcq">MCQ</mat-option>
                                 <mat-option  value="other">Yes-no</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
 
-                    <div class="col-md-12"> 
+                    <div class="" style="flex-grow: 1;" > 
                         <mat-form-field class="example-form-field full-width" appearance="outline">
                             <mat-label>Question</mat-label>
-                            <input matInput type="text" formControlName='question'>
+                            <input matInput type="text" [(ngModel)]="currentQuestion.question">
                         </mat-form-field>
                     </div>
-                    
-                    <div formArrayName="options" *ngFor='let option of ques.get("options").controls; index as i' class="col-md-3">
-                        <div [formGroupName]='i'>
-                            <mat-form-field class="example-form-field" appearance="outline">
-                                <mat-label>option {{i+1}}</mat-label>
-                                <input matInput type="text" formControlName='value'>
-                            </mat-form-field>
+
+                    <div class="col-12" style="display: flex; padding: 0;">
+                        <div class="options">
+                            <div>
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>option 1</mat-label>
+                                    <input matInput type="text" [(ngModel)]="currentQuestion.options[0]" >
+                                </mat-form-field>   
+                            </div>
+
+                            <div>
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>option 2</mat-label>
+                                    <input matInput type="text" [(ngModel)]="currentQuestion.options[1]" >
+                                </mat-form-field>   
+                            </div>
+
+                            <div>
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>option 3</mat-label>
+                                    <input matInput type="text" [(ngModel)]="currentQuestion.options[2]" >
+                                </mat-form-field>   
+                            </div>
+
+                            <div>
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>option 4</mat-label>
+                                    <input matInput type="text" [(ngModel)]="currentQuestion.options[3]">
+                                </mat-form-field>   
+                            </div>
+
+                            <div>
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>Correct Index</mat-label>
+                                    <input matInput type="number" min="1" max="4" [(ngModel)]="currentQuestion.correctIndex" >
+                                </mat-form-field>   
+                            </div>
+
                         </div>
                     </div>
+                </div>
+            </div>
+        
+            <!-- <div   class="col-12" *ngFor="let ques of quiz.get('questionArray').controls; index as ind">
+
+                <div  class="row" style="margin: 15px 0">
+                    <div class="" style="margin-right: 10px;">
+                        <mat-form-field class="example-form-field" appearance="outline">
+                            <mat-label>type</mat-label>
+                            <mat-select  (selectionChange)="addOptions($event.value, ind)">
+                                <mat-option  value="mcq">MCQ</mat-option>
+                                <mat-option  value="other">Yes-no</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="" style="flex-grow: 1;" > 
+                        <mat-form-field class="example-form-field full-width" appearance="outline">
+                            <mat-label>Question</mat-label>
+                            <input matInput type="text" >
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12" style="display: flex; padding: 0;">
+                        <div class="options"  *ngFor='let option of ques.get("options").controls; index as i'>
+                            <div>
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>option {{i+1}}</mat-label>
+                                    <input matInput type="text" >
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    
 
                 </div>
 
-            </div>
-            <div class="col-12 add-more">
+            </div> -->
+
+            <!-- <div class="col-12 add-more">
                 <button class="btn btn-info" (click)='addNewQuestion()'>Add More</button>
             </div>
+
             <div class="col-12">
                 <button class="btn btn-success" (click)="submit()">Submit</button>
-            </div>
+            </div> -->
         
         </div>
+<<<<<<< HEAD
     </form>
     <div>{{quiz.value | json}}</div>
+=======
+
+        <div *ngIf='activeTab == "fileupload"' class="question-main quiz-questions row apply-margin mat-elevation-z1">
+            <app-file-upload></app-file-upload>
+        </div>
+
+        <div class="list-div apply-margin mat-elevation-z1">
+            
+
+            <table>
+                <tr class="heading-row">
+                    <th>S.No</th>
+                    <th>Type</th>
+                    <th class="question-column">Question</th>
+                    <th>Opt 1</th>
+                    <th>Opt 2</th>
+                    <th>Opt 3</th>
+                    <th>Opt 4</th>
+                    <th>Correct ans</th>
+                </tr>
+
+                <tr class="data-row" (click)="updateques(i)"
+                    *ngFor="let question of quizDetails.questionArray; index as i" >
+                    <td>{{i + 1}}</td>
+                    <td>{{question.type}}</td>
+                    <td>{{question.question}}</td>
+                    <td *ngFor="let opt of question.options">
+                        {{opt}}
+                    </td>
+                    <td>{{question.correctAns}}</td>
+                </tr>
+                <tr>
+
+                </tr>
+            </table>
+        </div> 
+    </div>
+        
+>>>>>>> a55ce85480a65da9a4dbc5b559bcae52b9d81d0e
 </div>
