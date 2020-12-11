@@ -15,18 +15,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     
-<<<<<<< HEAD
-    this.quiz = this.fb.group({
-      name : ['', ],
-      createdBy : [''],
-      date : [''],
-      time : [''],
-      questionArray : this.fb.array([
-        this.returnNewQuestion()
-      ])
-    }) 
-  
-=======
     // this.quiz = this.fb.group({
     //   name : ['', ],
     //   createdBy : [''],
@@ -37,7 +25,6 @@ export class DashboardComponent implements OnInit {
     //   ])
     // }) 
 
->>>>>>> a55ce85480a65da9a4dbc5b559bcae52b9d81d0e
   }
 
   quiz : FormGroup
