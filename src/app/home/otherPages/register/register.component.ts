@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
         this.cPassword = null;
         this.type = 'local'
       } else {
-      Swal.fire({text : "Something went wrong"})
+      Swal.fire({text : result.message})
       }
     }),(err=>{
       Swal.fire({text : "Some error occured"})

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Form, FormArray, FormBuilder, FormGroup} from '@angular/forms'
-
+import { QuizService } from '../../services/quiz.service';
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-sch-test',
+  templateUrl: './sch-test.component.html',
+  styleUrls: ['./sch-test.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class SchTestComponent implements OnInit {
 
   constructor(
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private quizServ : QuizService 
   ) { }
 
   ngOnInit() {
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
     this.quiz = this.fb.group({
       name : ['', ],
       createdBy : [''],
+      teacherId : [''],
       date : [''],
       time : [''],
       questionArray : this.fb.array([
@@ -32,7 +34,7 @@ export class DashboardComponent implements OnInit {
   addNewQuestion(){
 
    (<FormArray>this.quiz.get('questionArray')).push(this.returnNewQuestion());
-   console.log("after add", this.quiz)
+   
   }
 
   returnNewQuestion() :FormGroup{
@@ -54,9 +56,7 @@ export class DashboardComponent implements OnInit {
       console.log("in loop");
       (<FormArray>(<FormArray>this.quiz.get('questionArray')).controls[index].get('options')).removeAt(0)
     }
-    console.log("index is : ", index)
 
-    console.log("before", this.quiz.value)
   
     if(type == 'mcq'){
 
@@ -71,11 +71,16 @@ export class DashboardComponent implements OnInit {
       }  
 
     }
-    console.log("after", this.quiz.value)
   }
 
   submit(){
     console.log(this.quiz.value)
+    this.quizServ.addQuiz(this.quiz.value).subscribe((result)=>{
+      if(result.success){
+          alert(result.message)
+    console.log("form sent to service");
+      }
+    })
     
     
   }
