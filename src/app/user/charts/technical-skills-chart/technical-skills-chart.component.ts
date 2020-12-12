@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
 
@@ -9,11 +9,13 @@ import { Label, SingleDataSet } from 'ng2-charts';
 })
 export class TechnicalSkillsChartComponent implements OnInit {
 
+  @Input("bindingObject") data_from_parent: Number[]
+  
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-  public pieChartLabels: Label[] = ['Attempted but right', 'Not Attempted', 'Attempted but wrong'];
-  public pieChartData: SingleDataSet = [29, 5, 6];
+  public pieChartLabels: Label[] = ['Correct Attempted', 'Not Attempted', 'Wrong Attempted'];
+  public pieChartData: SingleDataSet = [30,5,5];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
@@ -21,6 +23,7 @@ export class TechnicalSkillsChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log()
   }
 
 }

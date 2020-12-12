@@ -4,7 +4,7 @@
       <mat-grid-tile *ngFor="let i of [1]" [colspan]="( cardLayout | async )?.miniCard.cols" [rowspan]="( cardLayout | async )?.miniCard.rows">
 
        <app-card title="">
-            <app-technical-skills-chart></app-technical-skills-chart>
+            <app-technical-skills-chart [bindingObject]="values" ></app-technical-skills-chart>
         </app-card>
       </mat-grid-tile>
     </mat-grid-list>

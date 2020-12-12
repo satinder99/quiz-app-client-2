@@ -20,7 +20,9 @@ export class ShowChartComponent implements OnInit {
     total : 40,
     wrong_attempt : 5,
     right_attempt :30,
+    
   }
+  values = [40,5,30]
 
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
