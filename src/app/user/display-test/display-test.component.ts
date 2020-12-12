@@ -42,6 +42,4 @@ export class DisplayTestComponent implements OnInit {
     this.ques_no += 1;
     console.log(this.ans_list);
   }
-
-  
 }
