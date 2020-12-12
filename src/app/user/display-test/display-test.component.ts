@@ -35,12 +35,12 @@ export class DisplayTestComponent implements OnInit {
   }
 
   async prevByOne(){
-    await this.update_list();
+    this.update_list();
     this.ques_no -= 1;
     console.log(this.ans_list);
   }
   async nextByOne(){
-    await this.update_list();
+    this.update_list();
     this.ques_no += 1;
     console.log(this.ans_list);
   }
