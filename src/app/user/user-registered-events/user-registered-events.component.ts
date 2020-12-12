@@ -24,6 +24,3 @@ var element_data = [
   {date : "20/0/2020", name : "Introduction to linux.",link : '/user/test',syllabus:"ssssssssssssssssssss"},
   {date : "20/0/2020", name : "Introduction to linux.",link : '/user/test',syllabus:"ssssssssssssssssssss"}
 ]
-
-
-

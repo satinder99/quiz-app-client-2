@@ -31,6 +31,12 @@ import { UserRegisteredEventsComponent } from './user-registered-events/user-reg
 import { DisplayTestComponent } from './display-test/display-test.component';
 import { ResultComponent } from './result/result.component';
 import { ShowChartComponent } from './show-chart/show-chart.component';
+import { CountdownModule, CountdownGlobalConfig, CountdownConfig } from 'ngx-countdown';
+
+
+export function countdownConfigFactory(): CountdownConfig {
+  return {};
+}
 
 @NgModule({
   declarations: [UserComponent, UserNavComponent, UserDashComponent, CardComponent, TechnicalSkillsChartComponent, ProgressOfSkillsComponent, UserEditProfileComponent, UserRegisteredEventsComponent, DisplayTestComponent, ResultComponent, ShowChartComponent],
@@ -62,11 +68,13 @@ import { ShowChartComponent } from './show-chart/show-chart.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    CountdownModule
   ],
   providers:[
     ThemeService,
-    Material.MatDatepickerModule
+    Material.MatDatepickerModule,
+    { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory }
   ]
 })
 export class UserModule { }

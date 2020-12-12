@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import {CountdownComponent} from 'ngx-countdown';
 
 @Component({
   selector: 'app-display-test',
@@ -7,36 +8,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayTestComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('countdown', { static: false }) private countdown: CountdownComponent;
   
-  /*test1 = {
-    "name": "pyhton", 
-    "createdBy": "satinder", 
-    "date": "2021-01-07", 
-    "time": "19:00", 
-    "questionArray": 
-    [
-        {"question": "testing ques 1","type": "mcq", "options": [ { "value": "option1" },{ "value": "option2" },{ "value": "optino3" },{ "value": "option4" } ], "rightAnswer": "", "rightValue": "" }, 
-        { "question": "question 2", "type": "mcq", "options": [ { "value": "option1" }, { "value": "option2" }, { "value": "option3" }, { "value": "option4" } ], "rightAnswer": "", "rightValue": "" }, 
-        { "question": "testing ques 3", "type": "mcq", "options": [ { "value": "option1" }, { "value": "option2" }, { "value": "option3" }, { "value": "option4" } ], "rightAnswer": "", "rightValue": "" }, 
-        { "question": "question4", "type": "other", "options": [ { "value": "true" }, { "value": "false" } ], "rightAnswer": "", "rightValue": "" } 
-    ] 
-  }*/
+  constructor() { }
 
   test1={ "name": "pyhton", "createdBy": "satinder", "date": "2021-01-10", "time": "13:49", "questionArray": [ 
     { "question": "question1 ", "type": "mcq", "options": [ "option1", "option2", "optino3", "option4" ], "correctAns": "option1", "correctIndex": 0 }, 
-    { "question": "yes no wala question", "type": "other", "options": [ "yes", "no" ], "correctAns": "no", "correctIndex": 1 } 
+    { "question": "yes no wala question", "type": "other", "options": [ "yes", "no" ], "correctAns": "no", "correctIndex": 1 }, 
+    { "question": "question1 ", "type": "mcq", "options": [ "option1", "option2", "optino3", "option4" ], "correctAns": "option1", "correctIndex": 0 },
+    { "question": "question1 ", "type": "mcq", "options": [ "option1", "option2", "optino3", "option4" ], "correctAns": "option1", "correctIndex": 0 },
+    { "question": "question1 ", "type": "mcq", "options": [ "option1", "option2", "optino3", "option4" ], "correctAns": "option1", "correctIndex": 0 },
   ] } 
+  total_ques = this.test1.questionArray.length;
+  total_time = this.total_ques * 60;
+  
+  ans_list = [];
+  correct_answere:any;
 
   ques_no = 0;
   ngOnInit() {
+
     
   }
 
   prevByOne(){
+    this.ans_list.splice(this.ques_no,0,this.correct_answere)
     this.ques_no -= 1;
+    console.log(this.ans_list);
+    
   }
   nextByOne(){
+    this.ans_list.splice(this.ques_no,0,this.correct_answere)
     this.ques_no += 1;
+    console.log(this.ans_list);
   }
+
+  
 }
