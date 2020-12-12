@@ -8,36 +8,8 @@
             Time Remaining : <countdown #countdown [config]="{leftTime: total_time}"></countdown>
         </div>
     </div>
-
-    <!-- <div class='row'>
-        <div class='col-md-2'>Question No {{ques_no + 1}} </div>
-    <div class = 'row jumbotron'>
-        <div class='col-md-3'></div>
-        <div class='col-md-5 headingLine'>Welcome to {{test1.name}} Test</div>
-        <div class='col-md-2'></div>
-        <div class = 'col-md-2'>Time Left : </div>
-    </div>
-
-    <div class='row testDetails'>
-        <div class='col-md-2'>Total Questions : </div>
-        <div class = 'col-md-8'></div>
-        <div class='col-md-2'>Created By : {{test1.createdBy}}</div>
-    </div> -->
-
-    <!-- <div class='row'>
-        <div class='col-md-2'></div>
-    <div class='row testDetails'>
-        <div class='col-md-2'>Question No {{ques_no + 1}} </div>
-        <div class = 'col-md-8'></div>
-        <div class='col-md-2'>date of test : {{test1.date}}</div>
-    </div> -->
     <br>
     <br>
-    <!-- <div class='row'>
-        <div class='col-md-1'></div>
-        <div class='col-md-10 test-question'>{{test1.questionArray[ques_no].question}}</div>
-    </div> -->
-
     <div class='row'>
         <div class='col-md-2'></div>
         <div class='col-md-8'>
@@ -53,7 +25,7 @@
                     <div class='col-md-10'>
                         <mat-radio-group [(ngModel)]="correct_answere">
 
-                            <mat-radio-button *ngFor="let option of test1.questionArray[ques_no].options" [value]="option" class="radio-option">
+                            <mat-radio-button *ngFor="let option of test1.questionArray[ques_no].options;let i=index" [value]="i" class="radio-option">
                                 <div>{{option}}</div>
                             </mat-radio-button>
                         </mat-radio-group>
