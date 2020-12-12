@@ -30,15 +30,17 @@ export class DisplayTestComponent implements OnInit {
 
     
   }
+  update_list(){
+    this.ans_list[this.ques_no] = this.correct_answere;
+  }
 
-  prevByOne(){
-    this.ans_list.splice(this.ques_no,0,this.correct_answere)
+  async prevByOne(){
+    await this.update_list();
     this.ques_no -= 1;
     console.log(this.ans_list);
-    
   }
-  nextByOne(){
-    this.ans_list.splice(this.ques_no,0,this.correct_answere)
+  async nextByOne(){
+    await this.update_list();
     this.ques_no += 1;
     console.log(this.ans_list);
   }
