@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import {HomeService} from '../../services/home.service';
+import Swal from 'sweetalert2';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-show-chart',
@@ -9,11 +12,24 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 })
 export class ShowChartComponent implements OnInit {
 
-  constructor(private breakpointObserver : BreakpointObserver) { }
+  constructor(
+    private breakpointObserver : BreakpointObserver,
+    private homeService : HomeService,
+    private router : Router
+    ) { }
 
   ngOnInit() {
+    this.checkLogin()
   }
-
+  checkLogin(){
+    var userDetails = this.homeService.isLogin();
+    console.log(userDetails)
+    if(!userDetails){
+      Swal.fire({text : "Login first"}).then(result=>{
+        return this.router.navigateByUrl('/login')
+      }) 
+    }
+  }
 
   Data = {
     name : "Pyhton",

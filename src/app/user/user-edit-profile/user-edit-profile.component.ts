@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {HomeService} from '../../services/home.service'
+import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-edit-profile',
@@ -11,9 +14,15 @@ export class UserEditProfileComponent implements OnInit {
 
   minDate = new Date(1910, 0, 1);
   maxDate = new Date(2010, 0, 1);
+
+  userId : string;
+  userQuizId : string;
+  userDetails : any;
   constructor(
     private fb : FormBuilder,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private homeService : HomeService,
+    private router : Router
     ) {
      var user = {
         firstName : "Satinder",
@@ -28,6 +37,26 @@ export class UserEditProfileComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.checkLogin();
+  }
+
+  checkLogin(){
+    let userToken = this.homeService.isLogin();
+    if(!userToken){
+      console.log("not loggin in");
+      return this.router.navigateByUrl('/login')
+    } 
+    this.homeService.decodeToken(userToken).subscribe(result=>{
+      if(result.success){
+        this.userDetails = result.data;
+        this.userId = result.data._id;
+        this.userQuizId = result.data.userId
+      } else {
+        Swal.fire({text : "Login first"}).then(result=>{
+          return this.router.navigateByUrl('/login')
+        }) 
+      }
+    })
   }
 
   registerForm = this.fb.group({

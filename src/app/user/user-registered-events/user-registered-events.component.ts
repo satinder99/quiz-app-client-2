@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HomeService} from '../../services/home.service';
+import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-registered-events',
@@ -10,12 +13,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class UserRegisteredEventsComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    private homeService : HomeService,
+    private router : Router
+  ) {}
 
   data_source = element_data;  
 
   ngOnInit() {
   }
+
+  
 
   tableColumns  :  string[] = ['date', 'name', 'link', 'syllabus'];
 

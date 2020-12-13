@@ -82,8 +82,7 @@ export class LoginComponent implements OnInit {
   }
 
   afterLogin(result : any){
-    console.log(result)
-    var saved = this.homeService.saveToken(result);
+    var saved = this.homeService.saveToken(result.userToken);
     if(saved){
       this.router.navigate(['/user/dashboard']);
     } else {
