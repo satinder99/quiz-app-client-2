@@ -14,13 +14,18 @@ export class QuizService {
   ) { }
 
   url : string = environment.apiUrl;
-  ss= this.url + "/api/home/addQuiz";
   
   addQuiz(data : any) : Observable<any>{
     console.log("reached to addQuiz service funtion");
     return this.http
             .post(this.url + '/api/home/addQuiz',data)
             .pipe(retry(2),catchError(this.handleError))
+  }
+
+  fetchAllQuiz() : Observable<any>{
+    console.log('calling all quiz data from : ',this.url)
+    return this.http.get(this.url + '/api/admin/allquiz')
+      .pipe(retry(2),catchError(this.handleError))
   }
 
   private handleError(error: HttpErrorResponse) { 

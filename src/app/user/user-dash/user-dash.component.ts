@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-user-dash',
   templateUrl: './user-dash.component.html',
   styleUrls: ['./user-dash.component.scss']
 })
-export class UserDashComponent {
+export class UserDashComponent implements OnInit{
 
   /*upcoming_events={
                 courses : ["Python","Ruby","C language","C++ language","Java"],
@@ -46,7 +47,23 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private quizService : QuizService 
+    ) {}
+    mydatas : any;
+  ngOnInit(){
+    this.quizService.fetchAllQuiz().subscribe((result) => {
+      if(result.success){
+        this.mydatas = result.data;
+        console.log(this.mydatas);
+      }
+      else{
+        console.log("ERROR FROM NODEJS");
+      }
+    })
+    
+  }
 
 
 
@@ -61,27 +78,5 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
     "infinite": false,
   };
 
-  addSlide() {
-    this.slides.push('https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg')
-  }
 
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
-  }
-
-  slickInit(e) {
-    console.log('slick initialized');
-  }
-
-  breakpoint(e) {
-    console.log('breakpoint');
-  }
-
-  afterChange(e) {
-    console.log('afterChange');
-  }
-
-  beforeChange(e) {
-    console.log('beforeChange');
-  }
 }

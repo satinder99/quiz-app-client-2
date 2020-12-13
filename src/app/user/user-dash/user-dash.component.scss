@@ -82,5 +82,16 @@
 }
 
 .slick-div{
-  background-color: rgb(0, 0, 0)
+  background-color: rgb(0, 0, 0);
+  border-radius: 20px;
+}
+
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://cdn.leverageedu.com/blog/wp-content/uploads/2020/04/11212007/Science-Quiz-800x500.png');
+  background-size: cover;
 }
