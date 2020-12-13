@@ -55,6 +55,7 @@ export function countdownConfigFactory(): CountdownConfig {
     Material.MatCheckboxModule,
     Material.MatTableModule,
     Material.MatRadioModule,
+    Material.MatCardModule,
 
     NgxSpinnerModule,
 

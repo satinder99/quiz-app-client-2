@@ -1,19 +1,34 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-      <!-- You can now use your library component in app.component.html -->
-      <div class ='slick-div'>
-  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
-  (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-  <div ngxSlickItem *ngFor="let slide of slides" class="slide my-slide">
-    <img src="{{slide}}" alt="" width="100%" class=''>
-  </div>
-</ngx-slick-carousel>
-</div>
+  <!-- You can now use your library component in app.component.html -->
+  <div class ='slick-div'>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+      <div ngxSlickItem *ngFor="let mydata of mydatas" class="slide my-slide">
+        
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{mydata.name}}</mat-card-title>
+            <mat-card-subtitle>By {{mydata.createdByName}}</mat-card-subtitle>
+          </mat-card-header>
 
-<button (click)="addSlide()">Add</button>
-<button (click)="removeSlide()">Remove</button>
-<button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
-<button (click)="slickModal.unslick()">unslick</button>
+        <img src="https://cdn.leverageedu.com/blog/wp-content/uploads/2020/04/11212007/Science-Quiz-800x500.png" alt="" width="100%" class=''>
+        
+        <mat-card-content>
+          <div>{{mydata.date | date}}</div>
+          <div>{{mydata.time}}</div>
+          <div>For more details, you can register for it.</div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+
+      </div>
+    </ngx-slick-carousel>
+  </div>
 
 <mat-grid-list cols="{{( cardLayout | async )?.columns}}" rowHeight="300px">
   <mat-grid-tile *ngFor="let i of [5]" [colspan]="( cardLayout | async )?.personal.cols"
