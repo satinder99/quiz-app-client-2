@@ -1,4 +1,4 @@
-<div class=''>
+<div id='myTest'>
     
     <div class = 'row jumbotron'>
         <div class='col-md-2'></div>
@@ -13,8 +13,9 @@
     <div class='row'>
         <div class='col-md-2'></div>
         <div class='col-md-8'>
-            
-            <div class='questionComponent container main1'>
+
+            <div *ngIf="start_quiz; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock class='questionComponent container main1'>
                 <div class='row'>
                     <div class='col-md-12 test-question'>{{ques_no + 1}}.) {{test1.questionArray[ques_no].question}}</div>
                     
@@ -38,7 +39,17 @@
                     <button class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" (click)=prevByOne()>Prev</button>
                     <button class="btn btn-info" style="width: 45%; max-width: 300px; margin : 5px;" (click) = nextByOne()>Next</button>
                 </div>
-            </div>
+            </ng-template>
+            <ng-template #elseBlock>
+                <div class='row'>
+                    <div class='col-md-1'></div>
+                    <div class='col-md-10 attempt-quiz'>
+                        <button id='button1' class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" (click)=full_screen()>Attemp quiz now</button>
+                    </div>
+                    <div class='col-md-1'></div>
+                </div>
+            </ng-template>
         </div>
     </div>
+
 </div>
