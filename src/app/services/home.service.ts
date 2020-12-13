@@ -30,6 +30,23 @@ export class HomeService {
                 .pipe(retry(2),catchError(this.handleError))
   }
 
+  saveToken(token : any){
+    try{
+      localStorage.setItem("user" , token);
+      return true;
+    } catch(e){
+      return false;
+    }
+  }
+
+  deleteUserToken(){
+    try{
+      localStorage.removeItem("user");
+    } catch(e){
+      return false;
+    }
+  }
+
   private handleError(error: HttpErrorResponse) { 
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

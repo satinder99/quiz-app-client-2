@@ -20,4 +20,7 @@ export class UserNavComponent {
 
   menuItems = ['dashboard', 'edit profile', 'registered events', 'results', 'courses'];
 
+  signout(){
+    console.log("signout reached")
+  }
 }

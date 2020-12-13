@@ -46,29 +46,26 @@ export class LoginComponent implements OnInit {
                             'password':this.loginForm.get('password').value})
                     .subscribe(result => {
       this.spinner.hide();
+      
       if(result.success){
         if(result.emailConfirm == false){
           Swal.fire({text : result.message}).then(result=>{
             this.flipDiv = true
           })
-      
+
         }else {
           Swal.fire('Login successfully!',
           '',
           'success')
-          this.router.navigate(['/user/dashboard']);
-
-        }
-        
+          this.afterLogin(result);
+        } 
       }
       else{
-        
         Swal.fire({text : 'Login Failed'});
       }
     }),(err => {
       Swal.fire({text : 'Something happened wrong!!!'});
     })
-
   }
   logInWithGoogle(){
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(async user => {
@@ -82,6 +79,16 @@ export class LoginComponent implements OnInit {
     await this.getUserDetail(user);               // not need of await
       this.onSubmit();
     })
+  }
+
+  afterLogin(result : any){
+    console.log(result)
+    var saved = this.homeService.saveToken(result);
+    if(saved){
+      this.router.navigate(['/user/dashboard']);
+    } else {
+      Swal.fire({text : "Something went wrong"})
+    }
   }
 
   getUserDetail(user){
