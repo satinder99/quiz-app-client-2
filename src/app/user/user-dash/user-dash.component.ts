@@ -47,4 +47,41 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
   );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+
+
+  slides = ['https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg'];
+
+  slideConfig = {
+    "slidesToShow": 4,
+    "slidesToScroll": 1,
+    "arrows" : true,
+
+    "dots": true,
+    "infinite": false,
+  };
+
+  addSlide() {
+    this.slides.push('https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg')
+  }
+
+  removeSlide() {
+    this.slides.length = this.slides.length - 1;
+  }
+
+  slickInit(e) {
+    console.log('slick initialized');
+  }
+
+  breakpoint(e) {
+    console.log('breakpoint');
+  }
+
+  afterChange(e) {
+    console.log('afterChange');
+  }
+
+  beforeChange(e) {
+    console.log('beforeChange');
+  }
 }

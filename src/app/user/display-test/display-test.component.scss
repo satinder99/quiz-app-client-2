@@ -4,6 +4,7 @@
 .test-name{
     text-align: center;
 }
+
 @media screen and (min-width: 601px) {
   .test-name{
     font-size: 50px;
@@ -54,3 +55,12 @@ $dot-space: 6px;
 .ques-button-row{
     justify-content: center;
 }   
+.attemp-quiz{
+    justify-content: center;
+}
+
+
+#myTest{
+    height : 100%;
+    background-color: white;
+}

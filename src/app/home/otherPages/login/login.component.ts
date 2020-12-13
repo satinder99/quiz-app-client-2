@@ -7,6 +7,7 @@ import {HomeService} from '../../../services/home.service'
 import Swal from 'sweetalert2';
 
 import { NgxSpinnerService } from "ngx-spinner";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private fb:FormBuilder,
     private authService : AuthService,
     private homeService : HomeService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,8 @@ export class LoginComponent implements OnInit {
           Swal.fire('Login successfully!',
           '',
           'success')
+          this.router.navigate(['/user/dashboard']);
+
         }
         
       }

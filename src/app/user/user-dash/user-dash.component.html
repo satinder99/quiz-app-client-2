@@ -1,80 +1,44 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="{{( cardLayout | async )?.columns}}" rowHeight="300px">
-    <ngx-slick-carousel dots="true" infinite="false" speed="300" slides-to-show="5" touch-move="false" slides-to-scroll="1">
-      
-    <mat-grid-tile *ngFor="let i of upcoming_events" [colspan]="( cardLayout | async )?.miniCard.cols" [rowspan]="( cardLayout | async )?.miniCard.rows">
-      <!--<mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    -->
-    <!--mini-cards-->
-     <app-card title="{{i.course}}">
-       <img src = "{{i.url}}" height = "150px">
-       <div>DATE : {{i.date}}</div>
-       <div>TIME : {{i.time}}</div>
-      </app-card>
-    </mat-grid-tile>
-  </ngx-slick-carousel>
+      <!-- You can now use your library component in app.component.html -->
+      <div class ='slick-div'>
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+  (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+  <div ngxSlickItem *ngFor="let slide of slides" class="slide my-slide">
+    <img src="{{slide}}" alt="" width="100%" class=''>
+  </div>
+</ngx-slick-carousel>
+</div>
 
-    <!--Charts-->
-      <!--<mat-grid-tile *ngFor="let i of [5, 6]" [colspan]="( cardLayout | async )?.chart.cols"
-        [rowspan]="( cardLayout | async )?.chart.rows">
-        <app-card title="Card {{i}}">
-          <app-progress-of-skills></app-progress-of-skills>
-        </app-card>
-      </mat-grid-tile>
-    -->
-      <mat-grid-tile *ngFor="let i of [5]" [colspan]="( cardLayout | async )?.personal.cols"
-        [rowspan]="( cardLayout | async )?.personal.rows">
-        <div class="container">
-          <div class="row">
+<button (click)="addSlide()">Add</button>
+<button (click)="removeSlide()">Remove</button>
+<button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+<button (click)="slickModal.unslick()">unslick</button>
 
-            <div class="col-md-4" id="p_d2">
-              <img id = "user_pic"src="https://static.thenounproject.com/png/3070444-200.png" alt="user image">
-            </div>
+<mat-grid-list cols="{{( cardLayout | async )?.columns}}" rowHeight="300px">
+  <mat-grid-tile *ngFor="let i of [5]" [colspan]="( cardLayout | async )?.personal.cols"
+    [rowspan]="( cardLayout | async )?.personal.rows">
+    <div class="container">
+      <div class="row">
 
-            <div class="col-md-2"></div>
-
-            <div id = "p_d1" class="cols-md-6">
-              <div>Name : {{user_personal_detail.name}}</div>
-              <div>Age : {{user_personal_detail.age}}</div> 
-              <div>Contact : {{user_personal_detail.contact}}</div>
-              <div>Mail : {{user_personal_detail.mail}}</div>
-              <div>Rank : {{user_personal_detail.rank}}</div>
-              <div>Highest qualification : {{user_personal_detail.highest_qualification}}</div>
-            </div>
-            
-            
-          </div>
+        <div class="col-md-4" id="p_d2">
+          <img id = "user_pic"src="https://static.thenounproject.com/png/3070444-200.png" alt="user image">
         </div>
-      </mat-grid-tile>
-<!--
-      <mat-grid-tile *ngFor="let i of [7, 8]" [colspan]="( cardLayout | async )?.chart.cols"
-        [rowspan]="( cardLayout | async )?.chart.rows">
-        <app-card title="Card {{i}}">
-          <app-technical-skills-chart></app-technical-skills-chart>
-        </app-card>
-      </mat-grid-tile>
-   
 
-      Table
-      <mat-grid-tile [colspan]="( cardLayout | async )?.table.cols" [rowspan]="( cardLayout | async )?.table.rows">
-        <app-card title="Card 9"><div>Table Content Here</div></app-card>
-      </mat-grid-tile>-->
-    </mat-grid-list>
+        <div class="col-md-2"></div>
+
+        <div id = "p_d1" class="cols-md-6">
+          <div>Name : {{user_personal_detail.name}}</div>
+          <div>Age : {{user_personal_detail.age}}</div> 
+          <div>Contact : {{user_personal_detail.contact}}</div>
+          <div>Mail : {{user_personal_detail.mail}}</div>
+          <div>Rank : {{user_personal_detail.rank}}</div>
+          <div>Highest qualification : {{user_personal_detail.highest_qualification}}</div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
 </div>
