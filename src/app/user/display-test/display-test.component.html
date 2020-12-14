@@ -17,12 +17,12 @@
 
             <div *ngIf="start_quiz; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock class='questionComponent container main1'>
-                <div class='row'>
+                <div class='row' id = 'alert'>
                     <div class='col-md-12 test-question'>{{ques_no + 1}}.) {{test1.questionArray[ques_no].question}}</div>
                     
                 </div>
                 <br>
-                <div class='row'>
+                <div class='row main1'>
                     <div class='col-md-1'></div>
                     <div class='col-md-10'>
                         <mat-radio-group [(ngModel)]="correct_answere">
@@ -32,15 +32,15 @@
                             </mat-radio-button>
                         </mat-radio-group>
                     </div>
-                    <div class='col-md-1'></div>
+
                 </div>
             
 
-                <div class='row ques-button-row'>
+                <div class='row ques-button-row main1'>
                     <button class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" 
                     (click)="prevByOne()" [disabled]="ques_no == 0">Prev</button>
                     <button class="btn btn-info" style="width: 45%; max-width: 300px; margin : 5px;" 
-                    (click) ="nextByOne()">Next</button>
+                    (click) ="nextByOne()" [disabled]="ques_no == (total_ques -1)">Next</button>
                 </div>
             </ng-template>
             <ng-template #elseBlock>
@@ -54,6 +54,7 @@
                 </div>
             </ng-template>
         </div>
+        
     </div>
 
 </div>

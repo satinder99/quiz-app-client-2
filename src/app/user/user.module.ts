@@ -77,6 +77,7 @@ export function countdownConfigFactory(): CountdownConfig {
     ThemeService,
     Material.MatDatepickerModule,
     { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory },
+    { provide: Window, useValue: window },
     HomeService
   ]
 })

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, HostListener} from '@angular/core';
 import {CountdownComponent} from 'ngx-countdown';
 import { DOCUMENT } from '@angular/common';
 import * as screenfull from 'screenfull';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-display-test',
@@ -9,6 +10,54 @@ import * as screenfull from 'screenfull';
   styleUrls: ['./display-test.component.scss']
 })
 export class DisplayTestComponent implements OnInit {
+
+  x = 0;
+  y:boolean=false;
+  @HostListener('window:focus', ['$event'])
+  async onFocus(event: FocusEvent) {
+
+      // Do something      
+    if(this.start_quiz){
+
+    
+      console.log('document focus gain');
+      if(this.x == 2)
+      {
+        await Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Your quiz is END now',
+          target: document.getElementById("alert")
+        });
+
+        window.location.href = "http://localhost:4200";
+        
+      }
+      if(this.x==1)
+      {	Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'please stay on quiz otherwise quiz will end automatically next time',
+        target: document.getElementById("alert")
+        })   
+        
+      }
+    }
+  }
+
+  @HostListener('window:blur', ['$event'])
+  onBlur(event: FocusEvent): void {
+
+     // Do something
+    if(this.start_quiz){
+      console.log('document focus lost');
+      this.x += 1;
+    }
+  }
+
+
+
+
 
   @ViewChild('countdown', { static: false }) private countdown: CountdownComponent;
   
@@ -26,7 +75,7 @@ constructor(
     { "question": "question1 ", "type": "mcq", "options": [ "option1", "option2", "optino3", "option4" ], "correctAns": "option1", "correctIndex": 0 },
   ] } 
   total_ques = this.test1.questionArray.length;
-  total_time = this.total_ques * 60;
+  total_time=0;
   
   ans_list = [];
   correct_answere:any;
@@ -40,6 +89,7 @@ constructor(
     
 
 }
+
   update_list(){
     this.ans_list[this.ques_no] = this.correct_answere;
   }
@@ -51,7 +101,7 @@ constructor(
   }
   async nextByOne(){
     this.update_list();
-    
+
     this.ques_no += 1;
     console.log(this.ans_list);
   }
@@ -62,42 +112,11 @@ constructor(
     if (screenfull.isEnabled) {
         screenfull.request(this.testname);
         this.start_quiz = true;
+        if(this.start_quiz){
+          this.total_time = this.total_ques * 60;
+        }
       }
   
   }
-
-
-
-
-  openFullscreen() {
-    console.log("fullscreen");
-    if (this.elem.requestFullscreen) {
-      this.elem.requestFullscreen();
-    } else if (this.elem.mozRequestFullScreen) {
-      /* Firefox */
-      this.elem.mozRequestFullScreen();
-    } else if (this.elem.webkitRequestFullscreen) {
-      /* Chrome, Safari and Opera */
-      this.elem.webkitRequestFullscreen();
-    } else if (this.elem.msRequestFullscreen) {
-      /* IE/Edge */
-      this.elem.msRequestFullscreen();
-    }
-  }/* Close fullscreen */
-  closeFullscreen() {
-    if (this.document.exitFullscreen) {
-      this.document.exitFullscreen();
-    } else if (this.document.mozCancelFullScreen) {
-      /* Firefox */
-      this.document.mozCancelFullScreen();
-    } else if (this.document.webkitExitFullscreen) {
-      /* Chrome, Safari and Opera */
-      this.document.webkitExitFullscreen();
-    } else if (this.document.msExitFullscreen) {
-      /* IE/Edge */
-      this.document.msExitFullscreen();
-    }
-  }
-
-
+  
 }
