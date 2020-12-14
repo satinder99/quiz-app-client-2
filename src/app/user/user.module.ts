@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
+import {HomeService} from  '../services/home.service'
 
 //charts and schematics
 import { ChartsModule, ThemeService} from 'ng2-charts';
@@ -75,7 +76,8 @@ export function countdownConfigFactory(): CountdownConfig {
   providers:[
     ThemeService,
     Material.MatDatepickerModule,
-    { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory }
+    { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory },
+    HomeService
   ]
 })
 export class UserModule { }
