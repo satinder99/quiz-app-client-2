@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { QuizService } from '../../services/quiz.service';
+import {HomeService} from '../../services/home.service';
+import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-dash',
@@ -14,6 +17,10 @@ export class UserDashComponent implements OnInit{
                 courses : ["Python","Ruby","C language","C++ language","Java"],
               }
 */
+
+userDetails : any;
+userId : string;
+userQuizId : string;
 
 upcoming_events = [
   {course : "Python",date : "10 Nov 2020", time : "16:00", url :"https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg"},
@@ -49,10 +56,59 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private quizService : QuizService 
-    ) {}
+    private quizService : QuizService,
+    private homeService : HomeService,
+    private router : Router
+    ) {
+      this.checkLogin();
+    }
     mydatas : any;
+
   ngOnInit(){
+    
+    
+  }
+
+  checkLogin(){
+    let userToken = this.homeService.isLogin();
+
+    if(!userToken){
+      Swal.fire({text : "Login first"}).then(result=>{
+        return this.router.navigateByUrl('/login')
+      }) 
+    }
+
+    this.homeService.decodeToken(userToken).subscribe(result=>{
+      console.log("result", result);
+      if(result.success){
+        this.userDetails = result;
+        this.userId = result._id;
+        this.userQuizId = result.userId
+        this.afterLoginCheck();
+      } else {
+        Swal.fire({text : "Login first"}).then(result=>{
+          return this.router.navigateByUrl('/login')
+        }) 
+      }
+    })
+
+    // this.homeService.decodeToken(userToken).subscribe(result=>{
+    //   console.log("result is : ", result)
+    //   if(result.success){
+        
+    //     this.userDetails = result;
+    //     this.userId = result._id;
+    //     this.userQuizId = result.userId
+    //     this.afterLoginCheck();
+    //   } else {
+    //     Swal.fire({text : "Login first"}).then(result=>{
+    //       return this.router.navigateByUrl('/login')
+    //     }) 
+    //   }
+    // })
+  }
+
+  afterLoginCheck(){
     this.quizService.fetchAllQuiz().subscribe((result) => {
       if(result.success){
         this.mydatas = result.data;
@@ -61,11 +117,8 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
       else{
         console.log("ERROR FROM NODEJS");
       }
-    })
-    
+    }) 
   }
-
-
 
   slides = ['https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg'];
 

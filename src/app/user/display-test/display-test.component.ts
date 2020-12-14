@@ -32,6 +32,7 @@ constructor(
   correct_answere:any;
   start_quiz:boolean;
   ques_no = 0;
+  
   ngOnInit(): void {
     this.elem = document.getElementById("button1");
     
