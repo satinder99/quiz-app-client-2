@@ -150,6 +150,4 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
       }
     ]
   };
-
-
 }

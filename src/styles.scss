@@ -12,3 +12,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .myTest{
     height : 100%;
 }
+.btn-success{
+    background: #00bf8f; 
+    // background: -webkit-linear-gradient(to right, #00bf8f, #001510);
+    background: linear-gradient(to right, #00bf8f, #043e29);
+    &:hover{
+        background: linear-gradient(to right, #00bf8f, #001510) !important;
+    }
+}
