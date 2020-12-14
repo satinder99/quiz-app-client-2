@@ -24,18 +24,19 @@ export class UserEditProfileComponent implements OnInit {
     private homeService : HomeService,
     private router : Router
     ) {
-     var user = {
-        firstName : "Satinder",
-        lastName : "Singh",
-        mobileNo : 8054567680,
-        dob : new Date("1999-01-01T00:00:00Z"),
-        email : "abc@gmail.com",
-        profilePic:"https://cdn1.iconfinder.com/data/icons/general-43/512/Untitled-266-512.png",
-        gender : "male"
-      };
-      this.fetchUserDetails(user);
+     
+      
      }
 
+  user = {
+    firstName : "Satinder",
+    lastName : "Singh",
+    mobileNo : 8054567680,
+    dob : new Date("1999-01-01T00:00:00Z"),
+    email : "abc@gmail.com",
+    profilePic:"https://cdn1.iconfinder.com/data/icons/general-43/512/Untitled-266-512.png",
+    gender : "male"
+  };
   ngOnInit() {
     this.checkLogin();
   }
@@ -43,14 +44,16 @@ export class UserEditProfileComponent implements OnInit {
   checkLogin(){
     let userToken = this.homeService.isLogin();
     if(!userToken){
-      console.log("not loggin in");
-      return this.router.navigateByUrl('/login')
+      Swal.fire({text : "Login first"}).then(result=>{
+        return this.router.navigateByUrl('/login')
+      }) 
     } 
     this.homeService.decodeToken(userToken).subscribe(result=>{
       if(result.success){
         this.userDetails = result.data;
         this.userId = result.data._id;
-        this.userQuizId = result.data.userId
+        this.userQuizId = result.data.userId;
+        this.fetchUserDetails(this.user);
       } else {
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')

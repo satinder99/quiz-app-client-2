@@ -46,6 +46,7 @@ export class HomeService {
   deleteUserToken(){
     try{
       localStorage.removeItem("user");
+      return true
     } catch(e){
       return false;
     }
@@ -55,7 +56,6 @@ export class HomeService {
     try{
       var userToken = localStorage.getItem("user");
       userToken = JSON.parse(userToken)
-      console.log("user token", userToken)
       if(userToken){
         return userToken
       }
