@@ -39,19 +39,15 @@
                 <div class='row ques-button-row'>
                     <button class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" 
                     (click)="prevByOne()" [disabled]="ques_no == 0">Prev</button>
-                    <button class="btn btn-info" style="width: 45%; max-width: 300px; margin : 5px;" (click) ="nextByOne()">Next</button>
+                    <button class="btn btn-info" style="width: 45%; max-width: 300px; margin : 5px;" 
+                    (click) ="nextByOne()">Next</button>
                 </div>
             </ng-template>
             <ng-template #elseBlock>
                 <div class='row'>
                     <div class='col-md-1'></div>
-<<<<<<< HEAD
                     <div class='col-md-10' id='attempt-quiz'>
                         <button id='button1' class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" (click)=full_screen()>Attemp quiz now</button>
-=======
-                    <div class='col-md-10 attempt-quiz'>
-                        <button id='button1' class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" (click)="full_screen()">Attemp quiz now</button>
->>>>>>> 38d11b1883687a1c5c5a293f1db4d86a4fb0d402
                     </div>
                     <div class='col-md-1'></div>
                 </div>
