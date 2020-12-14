@@ -38,18 +38,17 @@
       <div class="row">
 
         <div class="col-md-4" id="p_d2">
-          <img id = "user_pic"src="https://static.thenounproject.com/png/3070444-200.png" alt="user image">
+          <img id = "user_pic"src="{{userDetails.profilePic}}" alt="User Photo">
         </div>
 
         <div class="col-md-2"></div>
 
         <div id = "p_d1" class="cols-md-6">
-          <div>Name : {{user_personal_detail.name}}</div>
-          <div>Age : {{user_personal_detail.age}}</div> 
-          <div>Contact : {{user_personal_detail.contact}}</div>
-          <div>Mail : {{user_personal_detail.mail}}</div>
-          <div>Rank : {{user_personal_detail.rank}}</div>
-          <div>Highest qualification : {{user_personal_detail.highest_qualification}}</div>
+          <div>Name : {{userDetails.firstName + " "+userDetails.lastName | titlecase}}</div>
+          <div>DOB : {{userDetails.dob | date}}</div> 
+          <div>E-mail : {{userDetails.email}}</div>
+          <div>Contact : {{userDetails.mobileNo}}</div>
+          <div>UserId : {{userDetails.userId}}</div>
         </div>
         
         

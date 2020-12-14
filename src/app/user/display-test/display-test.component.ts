@@ -32,7 +32,6 @@ constructor(
   correct_answere:any;
   start_quiz:boolean;
   ques_no = 0;
-  
   ngOnInit(): void {
     this.elem = document.getElementById("button1");
     
@@ -52,6 +51,7 @@ constructor(
   }
   async nextByOne(){
     this.update_list();
+    
     this.ques_no += 1;
     console.log(this.ans_list);
   }
