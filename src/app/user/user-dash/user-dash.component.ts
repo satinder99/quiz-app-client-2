@@ -76,6 +76,26 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
 
     "dots": true,
     "infinite": false,
+    "responsive": [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
   };
 
 

@@ -44,9 +44,9 @@
 
 
 .slick-slider {
-  width: 90%;
+  width: 80%;
   margin: auto;
-  background: #000;
+  background: rgb(0, 0, 0);
 }
 
 .nav-btn {
@@ -55,6 +55,7 @@
   width: 26px;
   cursor: pointer;
   top: 100px !important;
+  
 }
 
 .prev-slide.slick-disabled,
