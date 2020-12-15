@@ -42,10 +42,8 @@ export class UserEditProfileComponent implements OnInit {
     } 
     this.homeService.decodeToken(userToken).subscribe(result=>{
       if(result.success){
-        this.userDetails = result.data;
         this.userId = result.data._id;
-        this.userQuizId = result.data.userId;
-        this.fetchUserDetails(this.userDetails);
+        this.fetchUserDetailsFromBackend();
       } else {
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
@@ -53,6 +51,8 @@ export class UserEditProfileComponent implements OnInit {
       }
     })
   }
+
+  
 
   registerForm = this.fb.group({
     firstName : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
@@ -64,6 +64,20 @@ export class UserEditProfileComponent implements OnInit {
     gender : ['', Validators.required],
   });
 
+  fetchUserDetailsFromBackend(){
+    this.homeService.fetchUserDetailsById(this.userId).subscribe(result=>{
+      console.log(result)
+      if(result.success){
+        this.userDetails = result.data;
+        this.fetchUserDetails(this.userDetails);
+        
+      } else {
+        Swal.fire({text : "Login first"}).then(result=>{
+          return this.router.navigateByUrl('/login')
+        }) 
+      }
+    })
+  }
 
   onSubmit(){
     
@@ -92,3 +106,5 @@ export class UserEditProfileComponent implements OnInit {
     this.registerForm.get('gender').patchValue(user.gender)
   };
 }
+
+
