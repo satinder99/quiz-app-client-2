@@ -45,7 +45,7 @@ export class QuizService {
   registerForQuiz(userId:any,quizId : any) : Observable<any>{
     console.log("quiz id in service is : ",quizId)
     return this.http
-      .post(this.url+"/api/user/registerForQuiz/"+userId,quizId)
+      .post(this.url+"/api/user/registerForQuiz/"+userId,{quizId})
       .pipe(retry(2),catchError(this.handleError))
   }
 
