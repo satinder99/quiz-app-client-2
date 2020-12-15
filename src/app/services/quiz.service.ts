@@ -42,6 +42,13 @@ export class QuizService {
       .pipe(retry(2),catchError(this.handleError))
   } 
 
+  registerForQuiz(userId:any,quizId : any) : Observable<any>{
+    console.log("quiz id in service is : ",quizId)
+    return this.http
+      .post(this.url+"/api/user/registerForQuiz/"+userId,quizId)
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
   private handleError(error: HttpErrorResponse) { 
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
