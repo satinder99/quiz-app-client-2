@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HomeService} from '../../services/home.service';
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import { QuizService } from "../../services/quiz.service"
 
 @Component({
   selector: 'app-user-registered-events',
@@ -15,17 +16,24 @@ export class UserRegisteredEventsComponent implements OnInit {
 
   constructor(
     private homeService : HomeService,
-    private router : Router
+    private router : Router,
+    private quizService : QuizService
   ) {}
 
-  data_source = element_data;  
+  data_source:any;  
 
   userId : string;
   userQuizId : string;
   userDetails : any;
+  element_data:any;
 
   ngOnInit() {
     this.checkLogin();
+    this.quizService.fetchAllQuiz().subscribe((result)=>{
+      if(result.success){
+        this.data_source = result.data;
+      }
+    })
   }
 
   checkLogin(){
@@ -51,8 +59,7 @@ export class UserRegisteredEventsComponent implements OnInit {
 
   tableColumns  :  string[] = ['date', 'name', 'link', 'syllabus'];
 
+
+  
+
 }
-var element_data = [
-  {date : "20/0/2020", name : "Introduction to linux.",link : '/user/test',syllabus:"ssssssssssssssssssss"},
-  {date : "20/0/2020", name : "Introduction to linux.",link : '/user/test',syllabus:"ssssssssssssssssssss"}
-]

@@ -28,15 +28,7 @@ export class UserEditProfileComponent implements OnInit {
       
      }
 
-  user = {
-    firstName : "Satinder",
-    lastName : "Singh",
-    mobileNo : 8054567680,
-    dob : new Date("1999-01-01T00:00:00Z"),
-    email : "abc@gmail.com",
-    profilePic:"https://cdn1.iconfinder.com/data/icons/general-43/512/Untitled-266-512.png",
-    gender : "male"
-  };
+  
   ngOnInit() {
     this.checkLogin();
   }
@@ -53,7 +45,7 @@ export class UserEditProfileComponent implements OnInit {
         this.userDetails = result.data;
         this.userId = result.data._id;
         this.userQuizId = result.data.userId;
-        this.fetchUserDetails(this.user);
+        this.fetchUserDetails(this.userDetails);
       } else {
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
@@ -76,6 +68,20 @@ export class UserEditProfileComponent implements OnInit {
   onSubmit(){
     
     console.log(this.registerForm.value);
+    this.homeService.updateProfile(this.registerForm.value,this.userDetails._id).subscribe((result)=>{
+      if(result.success){
+        Swal.fire(
+          'Saved!',
+          'Your Profile has been updated successfully.',
+          'success'
+        ).then(result=>{
+          window.location.reload()
+        })
+      }
+      else{
+        Swal.fire({text : result.message});
+      }
+    })
   }
 
   fetchUserDetails(user : any){

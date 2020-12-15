@@ -13,23 +13,10 @@ import Swal from 'sweetalert2';
 })
 export class UserDashComponent implements OnInit{
 
-  /*upcoming_events={
-                courses : ["Python","Ruby","C language","C++ language","Java"],
-              }
-*/
-
 userDetails : any;
 userId : string;
 userQuizId : string;
 
-upcoming_events = [
-  {course : "Python",date : "10 Nov 2020", time : "16:00", url :"https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg"},
-  {course : "Ruby",date : "11 Nov 2020", time : "12:00",url : "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190902124355/ruby-programming-language.png"},
-  {course : "DSA",date : "12 Nov 2020", time : "08:00", url : "https://www.stoodnt.com/blog/wp-content/uploads/2020/06/Best-Online-Courses-Algorithms-Data-Structures.jpg"},
-  {course : "JAVASCRIPT",date : "13 Nov 2020", time : "11:00", url : "https://static.frontendmasters.com/assets/courses/2019-04-05-js-recent-parts/thumb@2x.jpg"},
-]
-
-user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, email : "abc@gmail.com", rank : 8544, highest_qualification:"Bacholor's of Technology"};
 
   /** Based on the screen size, switch from standard to one column per row */
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -155,4 +142,21 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
       }
     ]
   };
+
+
+  slickInit(e) {
+    console.log('slick initialized');
+  }
+
+  breakpoint(e) {
+    console.log('breakpoint');
+  }
+
+  afterChange(e) {
+    console.log('afterChange');
+  }
+
+  beforeChange(e) {
+    console.log('beforeChange');
+  }
 }

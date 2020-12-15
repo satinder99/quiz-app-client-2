@@ -87,6 +87,11 @@ export class HomeService {
             .pipe(retry(2), catchError(this.handleError))
   }
 
+  updateProfile(data : any,myuserId : any):Observable<any>{
+    data.userId = myuserId;
+    return this.http.post(this.url + "/api/user/updateProfile/"+myuserId ,data)
+      .pipe(retry(2), catchError(this.handleError))
+  }
   private handleError(error: HttpErrorResponse) { 
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

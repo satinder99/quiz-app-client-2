@@ -212,14 +212,19 @@ export class DashboardComponent implements OnInit {
       if (result.isConfirmed) {
         
         this.adminService.createQuiz(this.quizDetails).subscribe(result=>{
-          Swal.fire(
-            'Saved!',
-            'Your file has been saved.',
-            'success'
-          ).then(result=>{
-            window.location.reload()
+          if(result.success){
+            Swal.fire(
+              'Saved!',
+              'Your file has been saved.',
+              'success'
+            ).then(result=>{
+              window.location.reload()
+            })
+          }
+          else{
+            Swal.fire({text : result.message});
+          }
           })
-        })
         
       }
     })
