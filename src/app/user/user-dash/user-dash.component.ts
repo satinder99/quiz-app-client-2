@@ -112,6 +112,30 @@ userQuizId : string;
     }) 
   }
 
+  registerForQuiz(quizId:any){
+    this.quizService.registerForQuiz(this.userDetails._id,quizId).subscribe((result)=>{
+      if(result.success){
+        Swal.fire({
+          icon:'success',
+          title:'Registered!',
+          text:'You have been successfully registered.'
+        }).then(result=>{
+          window.location.reload()
+        })
+      }
+      else{
+        Swal.fire({
+          icon:'error',
+          title:'Registration Failed',
+          text:'Please try again later.'
+        }).then(result=>{
+          window.location.reload()
+        })
+      }
+      
+    })
+  }
+
   slides = ['https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg'];
 
   slideConfig = {
