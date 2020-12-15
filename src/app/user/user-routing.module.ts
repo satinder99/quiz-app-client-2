@@ -15,7 +15,7 @@ const routes: Routes = [
               {path : 'dashboard', component : UserDashComponent},
               {path : 'edit profile',component : UserEditProfileComponent},
               {path : 'registered events',component : UserRegisteredEventsComponent},
-              {path : 'test',component : DisplayTestComponent},
+              {path : 'test/:testId',component : DisplayTestComponent},
               {path : 'results', component : ResultComponent},
               {path : 'results/:testId', component : ShowChartComponent},
               {path : '**', component : UserDashComponent }

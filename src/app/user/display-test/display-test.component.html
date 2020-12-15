@@ -2,8 +2,8 @@
     
     <div class = 'row jumbotron'>
         <div class='col-md-2'></div>
-        <div class='col-md-8 test-name'> Welcome to {{test1.name}} Test</div>
-        <div class = 'col-md-2 createdBy'> Created By : {{test1.createdBy}}
+        <div class='col-md-8 test-name'> Welcome to {{quiz.name}} Test</div>
+        <div class = 'col-md-2 createdBy'> Created By : {{quiz.createdByName}}
             <br>
             Time Remaining : <countdown #countdown [config]="{leftTime: total_time}"></countdown>
         </div>
@@ -17,30 +17,31 @@
 
             <div *ngIf="start_quiz; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock class='questionComponent container main1'>
-                <div class='row'>
-                    <div class='col-md-12 test-question'>{{ques_no + 1}}.) {{test1.questionArray[ques_no].question}}</div>
+                <div class='row main1' id = 'alert'>
+                    <div class='col-md-12 test-question'>{{ques_no + 1}}.) {{quiz.questionArray[ques_no].question}}</div>
                     
                 </div>
-                <br>
-                <div class='row'>
+                <hr>
+                <div class='row main1'>
                     <div class='col-md-1'></div>
                     <div class='col-md-10'>
                         <mat-radio-group [(ngModel)]="correct_answere">
 
-                            <mat-radio-button *ngFor="let option of test1.questionArray[ques_no].options;let i=index" [value]="i" class="radio-option">
+                            <mat-radio-button *ngFor="let option of quiz.questionArray[ques_no].options;let i=index" [value]="i" class="radio-option">
                                 <div>{{option}}</div>
                             </mat-radio-button>
                         </mat-radio-group>
                     </div>
-                    <div class='col-md-1'></div>
+                    <div class='col-md-1' id='submit'><button class='btn btn-danger' (click) = 'submitQuiz()'>Submit</button></div>
+
                 </div>
             
 
-                <div class='row ques-button-row'>
+                <div class='row ques-button-row main1'>
                     <button class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" 
                     (click)="prevByOne()" [disabled]="ques_no == 0">Prev</button>
                     <button class="btn btn-info" style="width: 45%; max-width: 300px; margin : 5px;" 
-                    (click) ="nextByOne()">Next</button>
+                    (click) ="nextByOne()" [disabled]="ques_no == (total_ques -1)">Next</button>
                 </div>
             </ng-template>
             <ng-template #elseBlock>

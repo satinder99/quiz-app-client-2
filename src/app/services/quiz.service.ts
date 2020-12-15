@@ -18,7 +18,7 @@ export class QuizService {
   addQuiz(data : any) : Observable<any>{
     console.log("reached to addQuiz service funtion");
     return this.http
-            .post(this.url + '/api/home/addQuiz',data)
+            .post(this.url + '/api/admin/createquiz',data)
             .pipe(retry(2),catchError(this.handleError))
   }
 
@@ -27,6 +27,20 @@ export class QuizService {
     return this.http.get(this.url + '/api/admin/allquiz')
       .pipe(retry(2),catchError(this.handleError))
   }
+
+  quizById(quizId : String) : Observable<any>{
+    return this.http
+      .get(this.url + '/api/admin/quizbyid/' + quizId)
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
+  savequiz(quizData : any) : Observable<any>{
+    console.log(this.url + "/api/admin/savequiz/" + quizData.userId)
+    console.log("data is : ",quizData)
+    return this.http
+      .post(this.url + "/api/admin/savequiz/" + quizData.userId,quizData)
+      .pipe(retry(2),catchError(this.handleError))
+  } 
 
   private handleError(error: HttpErrorResponse) { 
     if (error.error instanceof ErrorEvent) {
