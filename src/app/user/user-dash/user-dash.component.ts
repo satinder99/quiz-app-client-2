@@ -128,8 +128,7 @@ userQuizId : string;
       else{
         Swal.fire({
           icon:'error',
-          title:'Registration Failed',
-          text:'Please try again later.'
+          title:result.message
         }).then(result=>{
           // window.location.reload()
         })

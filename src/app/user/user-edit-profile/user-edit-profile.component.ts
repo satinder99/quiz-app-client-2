@@ -70,12 +70,9 @@ export class UserEditProfileComponent implements OnInit {
     console.log(this.registerForm.value);
     this.homeService.updateProfile(this.registerForm.value,this.userDetails._id).subscribe((result)=>{
       if(result.success){
-        Swal.fire(
-          'Saved!',
-          'Your Profile has been updated successfully.',
-          'success'
-        ).then(result=>{
-          window.location.reload()
+        Swal.fire({
+          text:result.message,
+          icon:'success'
         })
       }
       else{
