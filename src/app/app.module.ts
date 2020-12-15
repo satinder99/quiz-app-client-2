@@ -27,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CountdownModule } from 'ngx-countdown';
 
-
+import {UserLoginGuardService} from './services/router-guard-service';
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -71,7 +71,8 @@ export function provideConfig() {
       useFactory: provideConfig
     },
     HomeService,
-    QuizService
+    QuizService,
+    UserLoginGuardService
   ],
   bootstrap: [AppComponent]
 })
