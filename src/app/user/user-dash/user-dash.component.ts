@@ -113,14 +113,16 @@ userQuizId : string;
   }
 
   registerForQuiz(quizId:any){
+    console.log(quizId)
     this.quizService.registerForQuiz(this.userDetails._id,quizId).subscribe((result)=>{
+      console.log(result)
       if(result.success){
         Swal.fire({
           icon:'success',
           title:'Registered!',
           text:'You have been successfully registered.'
         }).then(result=>{
-          window.location.reload()
+          // window.location.reload()
         })
       }
       else{
@@ -129,7 +131,7 @@ userQuizId : string;
           title:'Registration Failed',
           text:'Please try again later.'
         }).then(result=>{
-          window.location.reload()
+          // window.location.reload()
         })
       }
       
