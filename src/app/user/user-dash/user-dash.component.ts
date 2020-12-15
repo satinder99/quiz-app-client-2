@@ -81,9 +81,14 @@ user_personal_detail = { name : "satinder", age : 21, contact : 8054567680, emai
     this.homeService.decodeToken(userToken).subscribe(result=>{
       console.log("result", result);
       if(result.success){
-        this.userDetails = result;
-        this.userId = result._id;
-        this.userQuizId = result.userId
+        this.userDetails = result.data;
+        this.userId = result.data._id;
+        this.userQuizId = result.data.userId
+        console.log("result varibale is : ",result)
+        if(this.userDetails.profilePic.length == 0)
+        {
+          this.userDetails.profilePic = "https://static.thenounproject.com/png/3070444-200.png";
+        }
         this.afterLoginCheck();
       } else {
         Swal.fire({text : "Login first"}).then(result=>{
