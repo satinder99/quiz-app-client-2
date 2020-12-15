@@ -12,7 +12,7 @@ const routes: Routes = [
 
 { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 
-{ path: 'teacher', loadChildren: () => import('./teacher/teacher.module').then(m => m.TeacherModule) },
+{ path: 'teacher', loadChildren: () => import('./teacher/teacher.module').then(m => m.TeacherModule) , canActivate : [UserLoginGuardService]},
 
 { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
 
