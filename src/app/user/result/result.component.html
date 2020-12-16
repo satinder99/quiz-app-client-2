@@ -12,7 +12,7 @@
 
     <ng-container matColumnDef="checkresult">
         <th mat-header-cell *matHeaderCellDef>Check Result </th>
-        <td mat-cell *matCellDef="let element"><a routerLink="{{element.link}}">Click here</a></td>
+        <td mat-cell *matCellDef="let element"><a routerLink="/user/results/{{element._id}}">Click here</a></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>

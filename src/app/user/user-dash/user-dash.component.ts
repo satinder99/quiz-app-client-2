@@ -102,7 +102,7 @@ userQuizId : string;
   }
 
   afterLoginCheck(){
-    this.quizService.fetchAllQuiz().subscribe((result) => {
+    this.quizService.fetchAllUpcomingQuiz().subscribe((result) => {
       if(result.success){
         this.mydatas = result.data;
         console.log(this.mydatas);

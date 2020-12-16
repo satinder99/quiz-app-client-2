@@ -29,11 +29,6 @@ export class UserRegisteredEventsComponent implements OnInit {
 
   ngOnInit() {
     this.checkLogin();
-    this.quizService.fetchAllQuiz().subscribe((result)=>{
-      if(result.success){
-        this.data_source = result.data;
-      }
-    })
   }
 
   checkLogin(){
@@ -45,9 +40,22 @@ export class UserRegisteredEventsComponent implements OnInit {
     } 
     this.homeService.decodeToken(userToken).subscribe(result=>{
       if(result.success){
-        this.userDetails = result.data;
         this.userId = result.data._id;
-        this.userQuizId = result.data.userId;
+        this.fetchRegisteredQuizDetails();
+      } else {
+        Swal.fire({text : "Login first"}).then(result=>{
+          return this.router.navigateByUrl('/login')
+        }) 
+      }
+    })
+  }
+
+  fetchRegisteredQuizDetails(){
+    this.quizService.fetchRegisteredQuizDetailsById(this.userId).subscribe(result=>{
+      console.log(result)
+      if(result.success){
+        this.data_source = result.data;
+        console.log("result is : ",result);
       } else {
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
@@ -57,7 +65,7 @@ export class UserRegisteredEventsComponent implements OnInit {
   }
 
 
-  tableColumns  :  string[] = ['date', 'name', 'link', 'syllabus'];
+  tableColumns  :  string[] = ['date', 'name', 'link'];
 
 
   
