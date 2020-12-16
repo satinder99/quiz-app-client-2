@@ -5,6 +5,7 @@ import {HomeService} from '../../services/home.service'
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-user-edit-profile',
   templateUrl: './user-edit-profile.component.html',
@@ -34,8 +35,10 @@ export class UserEditProfileComponent implements OnInit {
   }
 
   checkLogin(){
+    this.spinner.show();
     let userToken = this.homeService.isLogin();
     if(!userToken){
+      this.spinner.hide();
       Swal.fire({text : "Login first"}).then(result=>{
         return this.router.navigateByUrl('/login')
       }) 
@@ -45,6 +48,7 @@ export class UserEditProfileComponent implements OnInit {
         this.userId = result.data._id;
         this.fetchUserDetailsFromBackend();
       } else {
+        this.spinner.hide();
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
         }) 
@@ -68,10 +72,12 @@ export class UserEditProfileComponent implements OnInit {
     this.homeService.fetchUserDetailsById(this.userId).subscribe(result=>{
       console.log(result)
       if(result.success){
+        this.spinner.hide();
         this.userDetails = result.data;
         this.fetchUserDetails(this.userDetails);
         
       } else {
+        this.spinner.hide();
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
         }) 
@@ -80,16 +86,18 @@ export class UserEditProfileComponent implements OnInit {
   }
 
   onSubmit(){
-    
+    this.spinner.show();
     console.log(this.registerForm.value);
     this.homeService.updateProfile(this.registerForm.value,this.userDetails._id).subscribe((result)=>{
       if(result.success){
+        this.spinner.hide();
         Swal.fire({
           text:result.message,
           icon:'success'
         })
       }
       else{
+        this.spinner.hide();
         Swal.fire({text : result.message});
       }
     })

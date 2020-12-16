@@ -1,60 +1,61 @@
 <div id='myTest'>
-    
-    <div class = 'row jumbotron'>
-        <div class='col-md-2'></div>
-        <div class='col-md-8 test-name'> Welcome to {{quiz.name}} Test</div>
-        <div class = 'col-md-2 createdBy'> Created By : {{quiz.createdByName}}
-            <br>
-            Time Remaining : <countdown #countdown [config]="{leftTime: total_time}"></countdown>
+    <div>
+        <div class = 'row jumbotron'>
+            <div class='col-md-2'></div>
+            <div class='col-md-8 test-name'> Welcome to {{quiz.name}} Test</div>
+            <div class = 'col-md-2 createdBy'> Created By : {{quiz.createdByName}}
+                <br>
+                Time Remaining : <countdown #countdown [config]="{leftTime: total_time}"></countdown>
+            </div>
         </div>
-    </div>
-    <br>
-    <br>
-    
-    <div class='row'>
-        <div class='col-md-2'></div>
-        <div class='col-md-8'>
+        <br>
+        <br>
+        
+        <div class='row'>
+            <div class='col-md-2'></div>
+            <div class='col-md-8'>
 
-            <div *ngIf="start_quiz; then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock class='questionComponent container main1'>
-                <div class='row main1' id = 'alert'>
-                    <div class='col-md-12 test-question'>{{ques_no + 1}}.) {{quiz.questionArray[ques_no].question}}</div>
-                    
-                </div>
-                <hr>
-                <div class='row main1'>
-                    <div class='col-md-1'></div>
-                    <div class='col-md-10'>
-                        <mat-radio-group [(ngModel)]="correct_answere">
-
-                            <mat-radio-button *ngFor="let option of quiz.questionArray[ques_no].options;let i=index" [value]="i" class="radio-option">
-                                <div>{{option}}</div>
-                            </mat-radio-button>
-                        </mat-radio-group>
+                <div *ngIf="start_quiz; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock class='questionComponent container main1'>
+                    <div class='row main1' id = 'alert'>
+                        <div class='col-md-12 test-question'>{{ques_no + 1}}.) {{quiz.questionArray[ques_no].question}}</div>
+                        
                     </div>
-                    <div class='col-md-1' id='submit'><button class='btn btn-danger' (click) = 'submitQuiz()'>Submit</button></div>
+                    <hr>
+                    <div class='row main1'>
+                        <div class='col-md-1'></div>
+                        <div class='col-md-10'>
+                            <mat-radio-group [(ngModel)]="correct_answere">
 
-                </div>
-            
+                                <mat-radio-button *ngFor="let option of quiz.questionArray[ques_no].options;let i=index" [value]="i" class="radio-option">
+                                    <div>{{option}}</div>
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class='col-md-1' id='submit'><button class='btn btn-danger' (click) = 'submitQuiz()'>Submit</button></div>
 
-                <div class='row ques-button-row main1'>
-                    <button class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" 
-                    (click)="prevByOne()" [disabled]="ques_no == 0">Prev</button>
-                    <button class="btn btn-info" style="width: 45%; max-width: 300px; margin : 5px;" 
-                    (click) ="nextByOne()" [disabled]="ques_no == (total_ques -1)">Next</button>
-                </div>
-            </ng-template>
-            <ng-template #elseBlock>
-                <div class='row'>
-                    <div class='col-md-1'></div>
-
-                    <div class='col-md-10' id='attempt-quiz'>
-                        <button id='button1' class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" (click)=full_screen()>Attemp quiz now</button>
                     </div>
-                    <div class='col-md-1'></div>
-                </div>
-            </ng-template>
+                
+
+                    <div class='row ques-button-row main1'>
+                        <button class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" 
+                        (click)="prevByOne()" [disabled]="ques_no == 0">Prev</button>
+                        <button class="btn btn-info" style="width: 45%; max-width: 300px; margin : 5px;" 
+                        (click) ="nextByOne()" [disabled]="ques_no == (total_ques -1)">Next</button>
+                    </div>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <div class='row'>
+                        <div class='col-md-1'></div>
+
+                        <div class='col-md-10' id='attempt-quiz'>
+                            <button id='button1' class="btn btn-secondary" style="width: 45%; max-width: 300px;margin : 5px;" (click)=full_screen()>Attemp quiz now</button>
+                        </div>
+                        <div class='col-md-1'></div>
+                    </div>
+                </ng-template>
+            </div>
         </div>
-    </div>
-
+    </div>    
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"><p style="color: white" > Loading... </p></ngx-spinner>
 </div>

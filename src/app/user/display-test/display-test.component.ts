@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from '../../services/quiz.service'
 import { HomeService } from 'src/app/services/home.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-display-test',
@@ -16,7 +17,7 @@ export class DisplayTestComponent implements OnInit {
 
   x = 0;
   y:boolean=false;
- /* @HostListener('window:focus', ['$event'])
+ @HostListener('window:focus', ['$event'])
   async onFocus(event: FocusEvent) {
 
       // Do something      
@@ -57,7 +58,7 @@ export class DisplayTestComponent implements OnInit {
       this.x += 1;
     }
   }
-*/
+
 
 
 
@@ -71,9 +72,9 @@ constructor(
         private activatedRoute: ActivatedRoute,
         private quizService : QuizService,
         private homeService : HomeService,
-        private router : Router
+        private router : Router,
+        private spinner : NgxSpinnerService
     ) {
-      this.checkLogin();
 }
 
   quiz : any;
@@ -89,12 +90,14 @@ constructor(
   userDetails:any;
 
   async ngOnInit() {
+
+    this.checkLogin();
     
     this.elem = document.getElementById("button1");
     
     this.testname = document.getElementById("myTest");
     this.start_quiz = false;
-
+    this.spinner.show();
     this.activatedRoute.params.subscribe(parameter => {
       console.log(parameter)
       this.myquizId = parameter.testId
@@ -104,6 +107,7 @@ constructor(
     console.log("PArameter received : ",this.quizId);
 */  
     await this.quizService.quizById(this.myquizId).subscribe((result)=>{
+      this.spinner.hide();
       if(result.success){
         this.quiz = result.data;
         this.total_ques = result.data.questionArray.length;
@@ -186,8 +190,9 @@ constructor(
     }).then((result) => {
 
       if (result.isConfirmed) {
-        
+        this.spinner.show();
         this.quizService.savequiz(this.quizDetails).subscribe(result=>{
+          this.spinner.hide();
           if(result.success){
             Swal.fire({
               icon:'success',
@@ -210,9 +215,11 @@ constructor(
 
 
   checkLogin(){
+    this.spinner.show();
     let userToken = this.homeService.isLogin();
 
     if(!userToken){
+      this.spinner.hide();
       Swal.fire({text : "Login first"}).then(result=>{
         return this.router.navigateByUrl('/login')
       }) 
@@ -225,6 +232,7 @@ constructor(
         console.log("result varibale is : ",result)
         this.afterLoginCheck();
       } else {
+        this.spinner.hide();
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
         }) 
@@ -234,12 +242,14 @@ constructor(
 afterLoginData:any;
   afterLoginCheck(){
     this.quizService.fetchAllQuiz().subscribe((result) => {
+      this.spinner.hide();
       if(result.success){
         this.afterLoginData = result.data;
         console.log("afterLoginData : ",this.afterLoginCheck);
       }
       else{
-        console.log("ERROR FROM NODEJS");
+        Swal.fire({text : result.message
+        }) 
       }
     }) 
   }
