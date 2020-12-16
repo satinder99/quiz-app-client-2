@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import {HomeService} from '../../services/home.service';
+import {QuizService} from '../../services/quiz.service';
 import Swal from 'sweetalert2';
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
+import {HomeService} from '../../services/home.service';
 
 @Component({
   selector: 'app-show-chart',
@@ -14,23 +15,61 @@ export class ShowChartComponent implements OnInit {
 
   constructor(
     private breakpointObserver : BreakpointObserver,
-    private homeService : HomeService,
-    private router : Router
+    private quizService : QuizService,
+    private router : Router,
+    private activatedRoute : ActivatedRoute,
+    private homeService : HomeService
     ) { }
 
   ngOnInit() {
-    this.checkLogin()
+    
+    this.activatedRoute.params.subscribe(parameter => {
+      console.log(parameter)
+      this.myquizId = parameter.testId
+      console.log("parameter receiver : ",this.myquizId);
+    });
+
+    this.checkLogin();
   }
+  myquizId : any;
+  quizData:any;
+  userId : any;
+  
   checkLogin(){
-    var userDetails = this.homeService.isLogin();
-    console.log(userDetails)
-    if(!userDetails){
+    let userToken = this.homeService.isLogin();
+
+    if(!userToken){
       Swal.fire({text : "Login first"}).then(result=>{
         return this.router.navigateByUrl('/login')
       }) 
     }
+
+    this.homeService.decodeToken(userToken).subscribe(result=>{
+      console.log("result", result);
+      if(result.success){
+        this.userId = result.data._id;
+        console.log("result varibale is : ",result)
+        this.afterLoginCheck();
+      } else {
+        Swal.fire({text : "Login first"}).then(result=>{
+          return this.router.navigateByUrl('/login')
+        }) 
+      }
+    })
   }
 
+  afterLoginCheck(){
+    this.quizService.getAnswereSheet(this.myquizId,this.userId).subscribe((result)=>{
+      if(result.success){
+        this.quizData = result.data;
+        console.log("quizData : ",this.quizData)
+      }
+      else{
+        Swal.fire({icon:'error',text:result.message})
+      }
+    })
+  }
+  
   Data = {
     name : "Pyhton",
     total : 40,

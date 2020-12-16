@@ -153,7 +153,9 @@ constructor(
   counter = 0;
   questionAttempted(){
     this.ans_list.forEach(element => {
-      this.counter += 1;
+      if(element != null){
+        this.counter += 1;
+      }
     }); 
     return this.counter; 
   }
@@ -168,7 +170,8 @@ constructor(
       quizId : this.myquizId,
       userId : this.userDetails._id,
       questionAttempted : this.questionAttempted(),
-      markedAns : this.ans_list
+      markedAns : this.ans_list,
+      totalQuestions : this.total_ques
     } 
     console.log("Quiz details are :" , this.quizDetails);
     Swal.fire({

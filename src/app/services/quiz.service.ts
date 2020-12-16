@@ -40,17 +40,17 @@ export class QuizService {
       .pipe(retry(2),catchError(this.handleError))
   }
 
-  quizById(quizId : String) : Observable<any>{
+  quizById(quizId : String) : Observable<any>{          //quiz for display a test
     return this.http
       .get(this.url + '/api/admin/quizbyid/' + quizId)
       .pipe(retry(2),catchError(this.handleError))
   }
 
   savequiz(quizData : any) : Observable<any>{
-    console.log(this.url + "/api/admin/savequiz/" + quizData.userId)
+    console.log(this.url + "/api/user/savequiz/" + quizData.userId)
     console.log("data is : ",quizData)
     return this.http
-      .post(this.url + "/api/admin/savequiz/" + quizData.userId,quizData)
+      .post(this.url + "/api/user/savequiz/" + quizData.userId,quizData)
       .pipe(retry(2),catchError(this.handleError))
   } 
 
@@ -58,6 +58,18 @@ export class QuizService {
     console.log("quiz id in service is : ",quizId)
     return this.http
       .post(this.url + "/api/user/registerForQuiz/" + userId ,{quizId})
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
+  fetchPastQuizDetails(userId : any) : Observable<any>{
+    return this.http
+      .get(this.url + "/api/user/pastQuizDetails/" + userId)
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
+  getAnswereSheet(quizId,userId):Observable<any>{          //quiz for show chart in result.......quiz from answersheet collection
+    return this.http
+      .get(this.url + "/api/admin/answereSheet/" + quizId + userId)
       .pipe(retry(2),catchError(this.handleError))
   }
 
