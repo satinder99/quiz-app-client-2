@@ -28,6 +28,18 @@ export class QuizService {
       .pipe(retry(2),catchError(this.handleError))
   }
 
+  fetchAllUpcomingQuiz() : Observable<any>{
+    console.log('calling all quiz data from : ',this.url)
+    return this.http.get(this.url + '/api/admin/quizbydate')
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
+  fetchRegisteredQuizDetailsById(userId) : Observable<any>{
+    return this.http
+      .get(this.url + "/api/user/upcomingQuiz/" + userId)
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
   quizById(quizId : String) : Observable<any>{
     return this.http
       .get(this.url + '/api/admin/quizbyid/' + quizId)
@@ -45,7 +57,7 @@ export class QuizService {
   registerForQuiz(userId:any,quizId : any) : Observable<any>{
     console.log("quiz id in service is : ",quizId)
     return this.http
-      .post(this.url+"/api/user/registerForQuiz/"+userId,{quizId})
+      .post(this.url + "/api/user/registerForQuiz/" + userId ,{quizId})
       .pipe(retry(2),catchError(this.handleError))
   }
 
