@@ -11,6 +11,7 @@ const routes: Routes = [
                           // All other router come under children of usercomponent
               {path : 'dashboard', component : DashboardComponent},
               { path : 'schedule test', component : SchTestComponent },
+              {path : '**', redirectTo : "/teacher/dashboard"}
     ]
   }
 ];
