@@ -19,7 +19,7 @@ export class ResultComponent implements OnInit {
     private router : Router,
     private spinner : NgxSpinnerService
   ) {}
-  data_source = element_data;  
+  data_source :any;
 
   ngOnInit() {
     this.checkLogin()
@@ -56,9 +56,10 @@ export class ResultComponent implements OnInit {
 
   afterLoginCheck(){
     this.quizService.fetchPastQuizDetails(this.userId).subscribe((result)=>{
+      console.log("result of quiz : ",result)
       this.spinner.hide();
       if(result.success){
-        this.data_source = result.data;
+        this.data_source = result.pastQuiz;
       }
       else{
         Swal.fire({text:result.message,icon:'error'});
@@ -69,7 +70,3 @@ export class ResultComponent implements OnInit {
   tableColumns  :  string[] = ['date', 'name', 'checkresult'];
 
 }
-var element_data = [
-  {date : "20/0/2020", name : "Introduction to linux.",_id: "15455768552255"},
-  {date : "20/0/2020", name : "Introduction to linux.",link: '2'}
-]

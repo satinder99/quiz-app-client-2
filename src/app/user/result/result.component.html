@@ -2,7 +2,7 @@
     <table mat-table [dataSource]="data_source" class="mat-elevation-z8" id = "tbl">
         <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef> Date </th>
-            <td mat-cell *matCellDef="let element"> {{element.date}}</td>
+            <td mat-cell *matCellDef="let element"> {{element.date | date}}</td>
         </ng-container>
 
         <ng-container matColumnDef="name">
