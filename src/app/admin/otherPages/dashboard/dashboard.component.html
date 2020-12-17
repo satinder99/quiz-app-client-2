@@ -211,19 +211,19 @@
                     <th>Correct ans</th>
                 </tr>
 
-                <tr class="data-row" (click)="updateques(i)"
+                <tr class="data-row" 
                     *ngFor="let question of quizDetails.questionArray; index as i" >
                     <td>{{i + 1}}</td>
                     <td>{{question.type}}</td>
                     <td>{{question.question}}</td>
-                    <td *ngFor="let opt of question.options">
+                    <td *ngFor="let opt of question.options; index as i">
                         {{opt}}
                     </td>
                     <td>{{question.correctAns}}</td>
+                    <td> <mat-icon (click)="updateques(i)" >edit</mat-icon>
+                        <mat-icon style="color: #db2525; margin-left: 10px;" (click)="deleteQuestion(i)">delete</mat-icon></td>
                 </tr>
-                <tr>
-
-                </tr>
+                
             </table>
         </div> 
     </div>
