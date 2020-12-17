@@ -65,7 +65,7 @@
               <mat-error *ngIf = "registerForm.get('dob').hasError('required')">Date of Birth is Required !!!</mat-error>
             </mat-form-field>  
           </div>
-          <div class="col-md-6 input-div">
+          <div class="col-md-3 input-div">
             <mat-form-field appearance="outline" class="fullWidth">
               <mat-label>Select Gender</mat-label>
               <mat-select formControlName="gender">
@@ -75,6 +75,16 @@
               </mat-select>
             </mat-form-field>
           </div>
+          <div class="col-md-3 input-div">
+            <mat-form-field appearance="outline" class="fullWidth">
+              <mat-label>Select Role</mat-label>
+              <mat-select formControlName="role">
+                <mat-option value="teacher">Teacher</mat-option>
+                <mat-option value="student">Student</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
           <div class="col-md-6 input-div" *ngIf="type =='local'">
             <mat-form-field class="fullWidth" appearance="outline">
               <mat-label>Password</mat-label>

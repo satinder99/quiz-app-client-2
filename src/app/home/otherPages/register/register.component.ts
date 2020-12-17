@@ -12,6 +12,7 @@ import {
 } from "angularx-social-login";
 
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
     private fb : FormBuilder,
     private authService : AuthService,
     private homeService : HomeService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router:Router
     ) {
     this.siteKey = '6LdWDMYZAAAAAD-E6pikrnyWpQ_2tFdZvBuKJavJ';
    }
@@ -52,6 +54,7 @@ export class RegisterComponent implements OnInit {
     otherToken : [''],
     provider : ['local'],
     gender : ['', Validators.required],
+    role : ['',Validators.required],
     termsAndConditions : ['',[Validators.requiredTrue]],
   });
 
@@ -72,7 +75,8 @@ export class RegisterComponent implements OnInit {
       
         this.registerForm.reset();
         this.cPassword = null;
-        this.type = 'local'
+        this.type = 'local';
+        this.router.navigateByUrl('/login')
       } else {
       Swal.fire({text : result.message})
       }

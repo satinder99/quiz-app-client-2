@@ -18,7 +18,7 @@ export class TeacherNavComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  menuItems = ['dashboard', 'edit profile', 'schedule test', 'results', 'courses'];
+  menuItems = ['dashboard', 'edit profile', 'schedule test', 'results', 'quiz list'];
 
   ngOnInit() {
   }
