@@ -1,5 +1,48 @@
+$darkBlue : #308bb0;
+$darkBlack : #363738;
+
 * {
     box-sizing: border-box;
+}
+.row{
+    width: 100%;
+    margin: 0 ;
+}
+
+.container-fluid{
+    padding: 0;
+    background-color: #f5f8fa;
+    min-height: 100vh;
+}
+
+.main-detail{
+    justify-content: space-between;
+}
+
+.top-tabbar{
+    display: flex;
+    background-color: $darkBlue;
+    padding: 15px;
+    color: white;
+    span{
+        margin-right: 15px;
+        padding: 8px;
+        cursor: pointer;
+    }
+}
+.span-tab-active {
+    background: rgba(255,255,255, 0.3);
+    border-radius: 15px;
+}
+.save-tab{
+    flex-grow: 1;
+    text-align: right;
+    label:hover{
+        cursor: pointer;
+        padding: 0px 5px 0px 5px;
+        background: rgba(255,255,255, 0.3);
+        border-radius: 15px;
+    }
 }
 
 .main{
@@ -9,11 +52,60 @@
     width: 100%;
 }
 .main-header{
-    text-align: center;
+    // text-align: center;
+    padding: 15px;
+    color: $darkBlack;
 }
 .full-width{
     width: 100%;
 }
 .add-more{
     text-align: end;
+}
+
+.apply-margin{
+    margin: 15px;
+    background-color: white;
+}
+.main-detail-div{
+    cursor: pointer;
+    padding: 0;
+    span{
+        background-color: $darkBlue;
+        padding: 2px 5px;
+        color: white;
+        box-shadow: 1px 1px 1px #308bb0;
+        &:hover{
+            box-shadow: 1px 1px 5px #308bb0;  
+        }
+    }
+}
+
+.options{
+    margin-right: 10px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    
+}
+
+.list-div{
+    width: 100%;
+    padding: 10px;
+    table{
+        width: 100%;
+        td, th{
+            padding-right: 2px;
+        }
+        
+    }
+}
+
+.question-column{
+    min-width: 300px;
+}
+.data-row:hover{
+    transform: scale(0.99);
+    cursor: pointer;
+    background-color: rgba(173, 173, 173, 0.3)
 }

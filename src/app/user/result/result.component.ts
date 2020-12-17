@@ -3,6 +3,7 @@ import { QuizService } from 'src/app/services/quiz.service';
 import { HomeService } from 'src/app/services/home.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -15,7 +16,8 @@ export class ResultComponent implements OnInit {
   constructor(
     private quizService : QuizService,
     private homeService : HomeService,
-    private router : Router
+    private router : Router,
+    private spinner : NgxSpinnerService
   ) {}
   data_source = element_data;  
 
@@ -27,9 +29,11 @@ export class ResultComponent implements OnInit {
   userId:any;
 
   checkLogin(){
+    this.spinner.show();
     let userToken = this.homeService.isLogin();
 
     if(!userToken){
+      this.spinner.hide();
       Swal.fire({text : "Login first"}).then(result=>{
         return this.router.navigateByUrl('/login')
       }) 
@@ -42,6 +46,7 @@ export class ResultComponent implements OnInit {
         console.log("result varibale is : ",result)
         this.afterLoginCheck();
       } else {
+        this.spinner.hide();
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
         }) 
@@ -51,6 +56,7 @@ export class ResultComponent implements OnInit {
 
   afterLoginCheck(){
     this.quizService.fetchPastQuizDetails(this.userId).subscribe((result)=>{
+      this.spinner.hide();
       if(result.success){
         this.data_source = result.data;
       }

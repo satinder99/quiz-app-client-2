@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
                             'password':this.loginForm.get('password').value})
                     .subscribe(result => {
       this.spinner.hide();
-      
+      console.log("role : ",result);
       if(result.success){
         if(result.emailConfirm == false){
           Swal.fire({text : result.message}).then(result=>{
@@ -83,8 +83,14 @@ export class LoginComponent implements OnInit {
 
   afterLogin(result : any){
     var saved = this.homeService.saveToken(result.userToken);
+    console.log("role : ",result.role)
     if(saved){
-      this.router.navigate(['/user/dashboard']);
+      if(result.role == "student"){
+        this.router.navigate(['/user/dashboard']);
+      }
+      else if(result.role == "teacher"){
+        this.router.navigate(['/teacher/dashboard']);
+      }
     } else {
       Swal.fire({text : "Something went wrong"})
     }

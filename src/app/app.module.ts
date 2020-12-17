@@ -26,7 +26,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CountdownModule } from 'ngx-countdown';
-
+import { FooterComponent } from 'src/app/home/pages/footer/footer.component';
 import {UserLoginGuardService} from './services/router-guard-service';
 
 const CONFIG = new AuthServiceConfig([
@@ -49,7 +49,8 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

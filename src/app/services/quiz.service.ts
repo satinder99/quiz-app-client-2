@@ -63,13 +63,13 @@ export class QuizService {
 
   fetchPastQuizDetails(userId : any) : Observable<any>{
     return this.http
-      .get(this.url + "/api/user/pastQuizDetails/" + userId)
+      .get(`${this.url}/api/user/pastQuizDetails/${userId}`)
       .pipe(retry(2),catchError(this.handleError))
   }
 
   getAnswereSheet(quizId,userId):Observable<any>{          //quiz for show chart in result.......quiz from answersheet collection
     return this.http
-      .get(this.url + "/api/admin/answereSheet/" + quizId + userId)
+      .get(`${this.url}/api/user/answereSheetForOneQuiz/${quizId}/${userId}`)
       .pipe(retry(2),catchError(this.handleError))
   }
 

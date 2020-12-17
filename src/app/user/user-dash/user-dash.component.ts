@@ -5,6 +5,7 @@ import { QuizService } from '../../services/quiz.service';
 import {HomeService} from '../../services/home.service';
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-user-dash',
@@ -45,7 +46,8 @@ userQuizId : string;
     private breakpointObserver: BreakpointObserver,
     private quizService : QuizService,
     private homeService : HomeService,
-    private router : Router
+    private router : Router,
+    private spinner : NgxSpinnerService
     ) {
       
     }
@@ -57,9 +59,11 @@ userQuizId : string;
   }
 
   checkLogin(){
+    this.spinner.show();
     let userToken = this.homeService.isLogin();
 
     if(!userToken){
+      this.spinner.hide();
       Swal.fire({text : "Login first"}).then(result=>{
         return this.router.navigateByUrl('/login')
       }) 
@@ -74,8 +78,8 @@ userQuizId : string;
         {
           this.userDetails.profilePic = "https://static.thenounproject.com/png/3070444-200.png";
         }
-        this.afterLoginCheck();
       } else {
+        this.spinner.hide();
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
         }) 
@@ -94,6 +98,7 @@ userQuizId : string;
         }
         this.afterLoginCheck();
       } else {
+        this.spinner.hide();
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
         }) 
@@ -103,6 +108,7 @@ userQuizId : string;
 
   afterLoginCheck(){
     this.quizService.fetchAllUpcomingQuiz().subscribe((result) => {
+      this.spinner.hide();
       if(result.success){
         this.mydatas = result.data;
         console.log(this.mydatas);
@@ -115,8 +121,10 @@ userQuizId : string;
 
   registerForQuiz(quizId:any){
     console.log(quizId)
+    this.spinner.show();
     this.quizService.registerForQuiz(this.userDetails._id,quizId).subscribe((result)=>{
       console.log(result)
+      this.spinner.hide();
       if(result.success){
         Swal.fire({
           icon:'success',

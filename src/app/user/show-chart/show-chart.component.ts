@@ -5,6 +5,7 @@ import {QuizService} from '../../services/quiz.service';
 import Swal from 'sweetalert2';
 import {Router,ActivatedRoute} from "@angular/router";
 import {HomeService} from '../../services/home.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-show-chart',
@@ -18,7 +19,8 @@ export class ShowChartComponent implements OnInit {
     private quizService : QuizService,
     private router : Router,
     private activatedRoute : ActivatedRoute,
-    private homeService : HomeService
+    private homeService : HomeService,
+    private spinner : NgxSpinnerService
     ) { }
 
   ngOnInit() {
@@ -36,9 +38,11 @@ export class ShowChartComponent implements OnInit {
   userId : any;
   
   checkLogin(){
+    this.spinner.show();
     let userToken = this.homeService.isLogin();
 
     if(!userToken){
+      this.spinner.hide();
       Swal.fire({text : "Login first"}).then(result=>{
         return this.router.navigateByUrl('/login')
       }) 
@@ -51,6 +55,7 @@ export class ShowChartComponent implements OnInit {
         console.log("result varibale is : ",result)
         this.afterLoginCheck();
       } else {
+        this.spinner.hide();
         Swal.fire({text : "Login first"}).then(result=>{
           return this.router.navigateByUrl('/login')
         }) 
@@ -60,6 +65,7 @@ export class ShowChartComponent implements OnInit {
 
   afterLoginCheck(){
     this.quizService.getAnswereSheet(this.myquizId,this.userId).subscribe((result)=>{
+      this.spinner.hide();
       if(result.success){
         this.quizData = result.data;
         console.log("quizData : ",this.quizData)

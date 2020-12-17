@@ -9,10 +9,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import * as Material from '@angular/material';
 import { SchTestComponent } from './sch-test/sch-test.component';
 import { QuizService } from '../services/quiz.service';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { FileUploadComponent } from './file-upload/file-upload.component'
 
 @NgModule({
-  declarations: [DashboardComponent, TeacherNavComponent, SchTestComponent],
+  declarations: [DashboardComponent, TeacherNavComponent, SchTestComponent, FileUploadComponent],
   imports: [
     CommonModule,
     TeacherRoutingModule,
