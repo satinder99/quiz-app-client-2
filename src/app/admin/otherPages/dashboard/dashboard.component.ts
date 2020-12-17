@@ -138,20 +138,21 @@ export class DashboardComponent implements OnInit {
   }
 
   questionAdd(){
-
+    console.log("question add reached")
+    console.log(this.currentQuestion)
     this.currentQuestion.type = 'mcq'
     if(!this.currentQuestion.type) return;
     if(!this.currentQuestion.question) return;
     if(!this.currentQuestion.options) return;
-    if(!this.currentQuestion.correctIndex) return;
-    if(this.currentQuestion.correctIndex < 0 && this.currentQuestion.correctIndex > 4) return;
+    if((this.currentQuestion.correctIndex < 0 && this.currentQuestion.correctIndex > 4) 
+          || this.currentQuestion.correctIndex == undefined) return;
     
     this.currentQuestion.correctIndex--;
     this.currentQuestion.correctAns = this.currentQuestion.options[this.currentQuestion.correctIndex];
       
-
+    console.log(this.update)
     if(this.update){
-
+      console.log("in update")
       this.quizDetails.questionArray[this.updateIndex] = this.currentQuestion;
       this.refreshCurrentQuestion();
       this.update = false;
@@ -227,6 +228,22 @@ export class DashboardComponent implements OnInit {
           })
         
       }
+    })
+  }
+
+  deleteQuestion(index : number){
+    Swal.fire({})
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delete it!'
+    }).then(result=>{
+      this.quizDetails.questionArray.splice(index, 1);
     })
   }
 }

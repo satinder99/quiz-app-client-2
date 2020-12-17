@@ -64,7 +64,7 @@ export class ShowChartComponent implements OnInit {
   }
 
   afterLoginCheck(){
-    this.quizService.getAnswereSheet(this.myquizId,this.userId).subscribe((result)=>{
+    this.quizService.getAnswereSheet(this.userId, this.myquizId,).subscribe((result)=>{
       this.spinner.hide();
       if(result.success){
         this.quizData = result.data;
