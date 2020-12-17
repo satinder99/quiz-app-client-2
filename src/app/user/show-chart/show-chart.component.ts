@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import {Router,ActivatedRoute} from "@angular/router";
 import {HomeService} from '../../services/home.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ThemeService } from 'ng2-charts';
 
 @Component({
   selector: 'app-show-chart',
@@ -68,22 +69,25 @@ export class ShowChartComponent implements OnInit {
       this.spinner.hide();
       if(result.success){
         this.quizData = result.data;
+        
         console.log("quizData : ",this.quizData)
+        this.total_ques = this.quizData.answerSheet.totalQuestions
+        this.wrong_ques = this.quizData.answerSheet.questionAttempted - this.quizData.answerSheet.markesObtained
+        this.right_ques = this.quizData.answerSheet.markesObtained
+        this.not_attempt = this.total_ques -(this.right_ques + this.wrong_ques)
+        this.values = [this.right_ques , this.not_attempt , this.wrong_ques]
+        console.log("values : ",this.values);
       }
       else{
         Swal.fire({icon:'error',text:result.message})
       }
     })
   }
-  
-  Data = {
-    name : "Pyhton",
-    total : 40,
-    wrong_attempt : 5,
-    right_attempt :30,
-    
-  }
-  values = [40,5,30]
+  total_ques : any;
+  wrong_ques : any;
+  right_ques : any;
+  not_attempt : any;
+  values :number[];
 
   cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {

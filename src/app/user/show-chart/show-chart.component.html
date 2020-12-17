@@ -1,6 +1,6 @@
-<div class="grid-container">
-    <h1 class="mat-h1"></h1>
-    <mat-grid-list cols="{{( cardLayout | async )?.columns}}" rowHeight="250px">  
+<div class="table">
+    
+    <!--<mat-grid-list cols="{{( cardLayout | async )?.columns}}" rowHeight="250px">  
       <mat-grid-tile *ngFor="let i of [1]" [colspan]="( cardLayout | async )?.miniCard.cols" [rowspan]="( cardLayout | async )?.miniCard.rows">
 
        <app-card title="">
@@ -8,11 +8,32 @@
         </app-card>
       </mat-grid-tile>
     </mat-grid-list>
-    <br>
-    <div>Course name : {{Data.name}}</div>
-    <div>Total questions : {{Data.total}}</div>
-    <div>Wrong Attempted : {{Data.wrong_attempt}}</div>
-    <div>Right Attempt : {{Data.right_attempt}}</div>
-    <div><button>Review of quiz</button></div>
+  --><br>
+
+
+<table style="width : 40%;font-size : 30px;">
+  
+  <tr>
+    <td>
+      Course name :</td><td> {{quizData.quiz.name}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Total questions :</td><td> {{quizData.answerSheet.totalQuestions}}
+    </td>
+    </tr>
+    <tr>
+      <td>
+        Wrong Attempted : </td><td>{{quizData.answerSheet.questionAttempted - quizData.answerSheet.markesObtained}}
+    </td>
+    </tr>
+    <tr>
+      <td>
+        Right Attempt : </td><td>{{quizData.answerSheet.markesObtained}}
+    </td>
+    </tr>
+        <!--<div><button>Review of quiz</button></div>
+        --></table>
     <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"><p style="color: white" > Loading... </p></ngx-spinner>
 </div>

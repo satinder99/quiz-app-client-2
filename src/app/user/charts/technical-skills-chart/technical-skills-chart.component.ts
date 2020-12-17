@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ChartOptions, ChartType } from 'chart.js';
+import { ChartOptions, ChartType, ChartPoint } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
 
 @Component({
@@ -9,13 +9,19 @@ import { Label, SingleDataSet } from 'ng2-charts';
 })
 export class TechnicalSkillsChartComponent implements OnInit {
 
-  @Input("bindingObject") data_from_parent: Number[]
+  //@Input("bindingObject") data_from_parent:number[];
+
+
+  //data : number[] = [this.data_from_parent[0],this.data_from_parent[1],this.data_from_parent[2]]
+   
   
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
+  
+  data  :number[];
   public pieChartLabels: Label[] = ['Correct Attempted', 'Not Attempted', 'Wrong Attempted'];
-  public pieChartData: SingleDataSet = [30,5,5];
+  public pieChartData: number[] = [3,3,3];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
@@ -23,7 +29,8 @@ export class TechnicalSkillsChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log()
-  }
+    this.data = [5,4,4]
+   // console.log("data pushed")
 
+  }
 }

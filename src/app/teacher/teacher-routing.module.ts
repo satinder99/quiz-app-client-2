@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: TeacherNavComponent, pathMatch : 'prefix',
     children : [
                           // All other router come under children of usercomponent
-              {path : 'dashboard', component : DashboardComponent},
+              {path : 'dashboard', component : SchTestComponent},
               { path : 'schedule test', component : SchTestComponent },
     ]
   }
