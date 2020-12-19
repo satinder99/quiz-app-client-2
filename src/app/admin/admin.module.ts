@@ -16,6 +16,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import * as Material from '@angular/material';
 import { FileUploadComponent } from './otherPages/file-upload/file-upload.component';
 import { AdminService } from '../services/admin.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { AdminService } from '../services/admin.service';
     DashboardComponent, 
     NavbarComponent, 
     SidebarComponent, 
-    FooterComponent, FileUploadComponent,
+    FooterComponent, FileUploadComponent, NavBarComponent,
 
   ],
   imports: [
@@ -34,7 +35,11 @@ import { AdminService } from '../services/admin.service';
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
+
     Material.MatSelectModule,
+    Material.MatSidenavModule,
+    Material.MatToolbarModule,
+    Material.MatListModule
   ],
   providers : [
     AdminService
