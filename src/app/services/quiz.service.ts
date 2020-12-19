@@ -73,6 +73,13 @@ export class QuizService {
       .pipe(retry(2),catchError(this.handleError))
   }
 
+
+  deleteQuizById(quizId) : Observable<any>{
+    return this.http
+      .get(`${this.url}/api/admin/deleteQuizByID/${quizId}`)
+      .pipe(retry(2),catchError(this.handleError))
+  }
+
   private handleError(error: HttpErrorResponse) { 
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

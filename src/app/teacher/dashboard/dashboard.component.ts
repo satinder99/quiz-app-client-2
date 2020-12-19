@@ -147,7 +147,25 @@ export class DashboardComponent implements OnInit {
       })
     }
   
-    slides = ['https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg','https://datawider.com/wp-content/uploads/2019/11/How-to-Learn-Python.jpg'];
+    deleteQuiz(quizId){
+      this.spinner.show();
+      this.quizService.deleteQuizById(quizId).subscribe((result)=>{
+        this.spinner.hide();
+        if(result.success){
+          if(result.message.deletedCount > 0){
+            Swal.fire({icon : 'success', text : "quiz deleted successfully"})
+            this.ngOnInit();
+          }
+          else{
+            Swal.fire({text : "No document deleted"});
+            this.ngOnInit();
+          }
+        }
+        else{
+          Swal.fire({icon: 'error',text : result.message})
+        }
+      })
+    }
   
     slideConfig = {
       "slidesToShow": 4,
