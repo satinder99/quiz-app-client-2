@@ -11,9 +11,12 @@ import { SchTestComponent } from './sch-test/sch-test.component';
 import { QuizService } from '../services/quiz.service';
 import {HttpClientModule} from '@angular/common/http';
 import { FileUploadComponent } from './file-upload/file-upload.component'
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
-  declarations: [DashboardComponent, TeacherNavComponent, SchTestComponent, FileUploadComponent],
+  declarations: [DashboardComponent, TeacherNavComponent, SchTestComponent, FileUploadComponent, EditProfileComponent],
   imports: [
     CommonModule,
     TeacherRoutingModule,
@@ -25,9 +28,16 @@ import { FileUploadComponent } from './file-upload/file-upload.component'
     Material.MatIconModule,
     Material.MatInputModule,
     Material.MatSelectModule,
+    Material.MatCardModule,
+    Material.MatGridListModule,
+    Material.MatButtonModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule,
 
     ReactiveFormsModule,
     FormsModule,
+    NgxSpinnerModule,
+    SlickCarouselModule
   ],
   providers : [
     QuizService

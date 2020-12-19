@@ -1,0 +1,75 @@
+<div class='container-fluid'>
+    <div class="register-div">
+      <br>
+      <div class="row main-row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-div" id='my-form1'>     
+          <h2>Edit your profile </h2>
+        </div>
+      </div>
+
+
+      <div class="row main-row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-div" id='my-form2'>     
+          <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          
+          <div class="row">
+            <div class="col-md-6 input-div">
+              <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>First name</mat-label>
+                <input matInput type="text" formControlName="firstName">
+                <mat-error *ngIf = "registerForm.get('firstName').hasError('required')">UserName is Required !!!</mat-error>
+                <mat-error *ngIf = "registerForm.get('firstName').hasError('minlength')||registerForm.get('firstName').hasError('maxlength')">username contain 3 to 30 characters only.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 input-div">
+              <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label> Last Name</mat-label>
+                <input matInput formControlName="lastName">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 input-div">
+              <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" [readonly]="type == 'social'">
+                <mat-error *ngIf = "registerForm.get('email').hasError('required')">Email is Required !!!</mat-error>
+                <mat-error *ngIf = "registerForm.get('email').hasError('email')">Email is not valid.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 input-div">
+              <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Mobile No. </mat-label>
+                <input matInput type="tel" formControlName="mobileNo" pattern='^[6-9]\d{9}$'>
+                <mat-error *ngIf = "registerForm.get('mobileNo').hasError('required')">Mobile Number is Required !!!</mat-error>
+                <mat-error *ngIf = "!registerForm.get('mobileNo').hasError('required') && (registerForm.get('mobileNo').hasError('minlength')||registerForm.get('mobileNo').hasError('maxlength')||registerForm.get('mobileNo').hasError)">Mobile Number not valid.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 input-div">
+              <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName='dob' placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+                <mat-error *ngIf = "registerForm.get('dob').hasError('required')">Date of Birth is Required !!!</mat-error>
+              </mat-form-field>  
+            </div>
+            <div class="col-md-6 input-div">
+              <mat-form-field appearance="outline" class="fullWidth">
+                <mat-label>Select Gender</mat-label>
+                <mat-select formControlName="gender">
+                  <mat-option value="male">Male</mat-option>
+                  <mat-option value="female">Female</mat-option>
+                  <mat-option value="others">Others</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <button type = "submit" class="btn btn-success" id='button'>Update Profile</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"><p style="color: white" > Loading... </p></ngx-spinner> 
+</div>
+  

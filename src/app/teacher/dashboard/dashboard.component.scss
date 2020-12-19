@@ -1,0 +1,100 @@
+.grid-container {
+    margin: 20px;
+  }
+  
+  .dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .dashboard-card-content {
+    text-align: center;
+  }
+  
+  #p_d1{
+    text-align: left;
+    vertical-align: middle;
+   // border: 2px solid black;
+   font-size: x-large
+  
+  }
+  
+  #p_d2
+  {
+    text-align: center;
+  }
+  #user_pic{
+    border-radius: 50%;
+    height : 200px;
+    width:200px;
+  }
+  
+  .my-slide{
+    margin : 10px;
+    border: 1px solid white;
+  }
+  
+  
+  
+  .slick-slider {
+    width: 80%;
+    margin: auto;
+    background: rgb(0, 0, 0);
+  }
+  
+  .nav-btn {
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 100px !important;
+    
+  }
+  
+  .prev-slide.slick-disabled,
+  .next-slide.slick-disabled {
+    pointer-events: none;
+    opacity: 0.2;
+  }
+  
+  .prev-slide {
+    background: url() no-repeat scroll 0 0;
+    left: -33px;
+  }
+  
+  .next-slide {
+    background: url() no-repeat scroll -24px 0px;
+    right: -33px;
+  }
+  
+  .prev-slide:hover {
+    background-position: 0px -53px;
+  }
+  
+  .next-slide:hover {
+    background-position: -24px -53px;
+  }
+  
+  .slick-div{
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+  }
+  
+  
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://cdn.leverageedu.com/blog/wp-content/uploads/2020/04/11212007/Science-Quiz-800x500.png');
+    background-size: cover;
+  }

@@ -1,1 +1,61 @@
-<p>dashboard works!</p>
+<div class="grid-container">
+    <h2>Recently created Quiz</h2>
+    <!-- You can now use your library component in app.component.html -->
+    <div class ='slick-div'>
+       
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+        (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let mydata of mydatas" class="slide my-slide">
+          
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{mydata.name}}</mat-card-title>
+              <mat-card-subtitle>By {{mydata.createdByName}}</mat-card-subtitle>
+            </mat-card-header>
+  
+          <img src="https://cdn.leverageedu.com/blog/wp-content/uploads/2020/04/11212007/Science-Quiz-800x500.png" alt="course image" width="100%" class=''>
+          
+          <mat-card-content>
+            <div>{{mydata.date | date}}</div>
+            <div>{{mydata.time}}</div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button (click)="registerForQuiz(mydata._id)">View Details</button>
+            <button mat-raised-button>Delete</button>
+          </mat-card-actions>
+        </mat-card>
+  
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  
+  
+  <mat-grid-list cols="{{( cardLayout | async )?.columns}}" rowHeight="300px">
+    <mat-grid-tile *ngFor="let i of [5]" [colspan]="( cardLayout | async )?.personal.cols"
+      [rowspan]="( cardLayout | async )?.personal.rows">
+      <div class="container">
+        <div class="row">
+  
+          <div class="col-md-4" id="p_d2">
+            <img id = "user_pic"src="{{userDetails.profilePic}}" alt="User Photo">
+          </div>
+  
+          <div class="col-md-2"></div>
+  
+          <div id = "p_d1" class="cols-md-6">
+            <div>Name : {{userDetails.firstName + " "+userDetails.lastName | titlecase}}</div>
+            <div>DOB : {{userDetails.dob | date}}</div> 
+            <div>E-mail : {{userDetails.email}}</div>
+            <div>Contact : {{userDetails.mobileNo}}</div>
+            <div>UserId : {{userDetails.userId}}</div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"><p style="color: white" > Loading... </p></ngx-spinner>
+  </div>
+  
