@@ -201,7 +201,7 @@ constructor(
               target: document.getElementById("alert"),
             
             }).then(result=>{
-              window.location.reload()
+              this.router.navigateByUrl('/user/results')
             })
           }
           else{

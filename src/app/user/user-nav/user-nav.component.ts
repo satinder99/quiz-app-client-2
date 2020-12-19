@@ -25,7 +25,7 @@ export class UserNavComponent {
     private router : Router
   ) {}
 
-  menuItems = ['dashboard', 'edit profile', 'registered events', 'results', 'courses'];
+  menuItems = ['dashboard', 'edit profile', 'registered events', 'results'];
 
   signout(){
     console.log("signout reached")
